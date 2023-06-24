@@ -4,10 +4,12 @@ import {
   IResetPassword,
 } from '@/core/layouts/auth/auth'
 import { apiClient } from '@core/api/base.api'
-import { data } from 'autoprefixer'
-
+// export function authLogin(props: AuthLoginRequest) {
+//   const { login_id, password } = props
+//   return apiClient.post('/auth/employee/login', { login_id, password })
+// }
 export function authLogin(props: AuthLoginRequest) {
-  return apiClient.post('/auth/login', props)
+  return apiClient.post('/auth/employee/login', props)
 }
 
 export function sendEmailForgotPassword(props: IForgotPassword) {

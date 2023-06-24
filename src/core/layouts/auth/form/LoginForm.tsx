@@ -12,6 +12,7 @@ import {
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useRouter } from 'next/router'
+import React from 'react'
 import { FaRegTimesCircle } from 'react-icons/fa'
 
 interface Props {
@@ -30,13 +31,40 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      // email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => {
+        if (/^\S+@\S+\.\S+$/.test(value)) {
+          return null
+        }
+        if (/^\d+$/.test(value)) {
+          return null
+        }
+        return 'Invalid login id'
+      },
       password: (value) =>
-        value.length < 2 ? 'Name must have at least 2 letters' : null,
+        value.length < 8 ? 'Password must have at least 8 letters' : null,
     },
   })
+  // const tmpPassword = form.values.password
+  // const tmpEmail = form.values.email
+
+  // React.useEffect(() => {
+  //   if (tmpPassword.length > 8) {
+  //     alert('password sudah 8 karekter')
+  //   }
+  // }, [tmpPassword])
+
+  // React.useEffect(() => {
+  //   if (tmpEmail === 'rifky922013@gmail.com') {
+  //     alert('selamat datang iki')
+  //   }
+  // }, [tmpEmail])
+  // if (tmpPassword.length > 8) {
+  //   alert('password sudah 8 karekter')
+  // }
   const handleSubmit = (values: AuthLoginRequest) => {
     onSubmit(values)
+    // console.log(values)
   }
   return (
     <>
@@ -130,17 +158,21 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
             <Box sx={{ marginTop: '66px' }}>
               {/* form for login */}
               <form
-                onSubmit={form.onSubmit((values) =>
-                  handleSubmit({
-                    username: values.email,
-                    password: values.password,
-                    user_type: 'SUPER_ADMIN',
-                  })
+                onSubmit={form.onSubmit(
+                  (values) =>
+                    handleSubmit({
+                      login_id: values.email,
+                      password: values.password,
+                      user_type: 'SUPER_ADMIN',
+                    })
+                  // {
+                  //   console.log(values)
+                  // }
                 )}
               >
                 <TextInput
                   withAsterisk
-                  placeholder="Email"
+                  placeholder="Masukan Email atau Nomor Telepon"
                   radius="md"
                   size="lg"
                   {...form.getInputProps('email')}

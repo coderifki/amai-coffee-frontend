@@ -2,19 +2,18 @@ import { AuthLoginRequest } from '@/core/layouts/auth/auth'
 import { authLogin } from '@/features/auth/auth.api'
 import { getUserProfile } from '@/features/auth/user/user.api'
 import { UserEntity } from '@/features/auth/user/user.model'
+
 import { deleteCookie, setCookie } from 'cookies-next'
 import { useRouter } from 'next/router'
 import React, { Context, createContext, useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 
 export type AuthUser = {
-  // user: UserEntity | null;
-  user: any | null
+  user: UserEntity | null
+  // user: any | null
   loading: boolean
   logInWithCredentials?: (props: AuthLoginRequest) => Promise<any | undefined>
-  // logOut?: () => Promise<void>;
   logOut?: () => void
-  isAuth?: boolean
 }
 
 export const AuthUserContext: Context<AuthUser> = createContext<AuthUser>({
@@ -27,37 +26,35 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
 
   const router = useRouter()
 
-  const [isAuth, setIsAuth] = useState(false)
-  // const [authUser, setAuthUser] = useState<UserEntity | null>(null);
-  const [authUser, setAuthUser] = useState<UserEntity | null>(null)
-
   const logInWithCredentials = async (props: AuthLoginRequest) => {
     setCustomLoading(true)
-    // console.log('process.env.NEXT_API_URL: ', process.env.NEXT_PUBLIC_API_URL)
     try {
-      const isLogin = await authLogin({
-        username: props.username,
+      const isLogin: any = await authLogin({
+        login_id: props.login_id,
         password: props.password,
-        user_type: 'SUPER_ADMIN',
+        user_type: props?.user_type || 'SUPER_ADMIN',
       })
 
       if (!isLogin) {
-        return
+        return null
       }
-      const result = await getUserProfile()
-      // console.log('rest', res.data.user);
-      if (result) {
-        setCookie('user', result, { maxAge: 60 * 60 * 24 * 7 })
-        setAuthUser(result)
-        setIsAuth(true)
-        // setCookie('user', res.data.data.user, { maxAge: 60 * 60 * 24 * 7 });
-        // setCookie('token', res.data.data.token, { maxAge: 60 * 60 * 24 * 7 });
-        toast.success('Login success', {
-          position: 'bottom-center',
-        })
-        await router.push('/dashboard')
-      }
-      return result
+      // console.log('test jwt:', isLogin.data.data.jwt_token)
+      // const result = await getUserProfile()
+      // if (result) {
+      //   setCookie('user', result, { maxAge: 60 * 60 * 24 * 7 })
+      //   toast.success('Login success', {
+      //     position: 'bottom-center',
+      //   })
+      //   await router.push('/dashboard')
+      // }
+      // return result
+      setCookie('user', isLogin.data.data.jwt_token, {
+        maxAge: 60 * 60 * 24 * 7,
+      })
+      toast.success('Login success', {
+        position: 'bottom-center',
+      })
+      await router.push('/dashboard')
     } catch (err) {
       // setCustomLoading(false);
       toast.error('something went wrong')
@@ -72,8 +69,6 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
     console.trace('logOut')
     deleteCookie('user')
     deleteCookie('token')
-    setIsAuth(false)
-    setAuthUser(null)
     setCustomLoading(false)
     router.push('/')
   }
@@ -82,10 +77,9 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
     <AuthUserContext.Provider
       value={{
         loading: customLoading,
-        user: authUser,
+        user: null,
         logInWithCredentials,
         logOut,
-        isAuth,
       }}
     >
       {children}

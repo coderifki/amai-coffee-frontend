@@ -1,5 +1,5 @@
 export type AuthLoginRequest = {
-  username: string
+  login_id: string
   password: string
   user_type?: string
 }

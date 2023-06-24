@@ -9,11 +9,10 @@ export default function Login() {
   const { logInWithCredentials, loading } = useAuth()
 
   const handleSubmit = async (data: AuthLoginRequest) => {
-    const { username, password, user_type } = data
+    const { login_id, password, user_type } = data
     // console.log('data', data)
     if (logInWithCredentials && data) {
-      await logInWithCredentials({ username, password, user_type })
-      // console.log('result', result);
+      await logInWithCredentials({ login_id, password, user_type })
     }
   }
   return (
