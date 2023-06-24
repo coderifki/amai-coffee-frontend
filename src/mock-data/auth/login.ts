@@ -1,0 +1,26 @@
+export const mock_login = [
+  {
+    user_id: '1',
+    username: 'umar',
+    email: '1@1.com',
+    phone: '085623456789',
+    password: '12345678',
+    verified: true,
+    banned: false,
+    last_active: new Date(),
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+  {
+    user_id: '2',
+    username: 'umar test',
+    email: 'umar@testmail.com',
+    phone: '085623456789',
+    password: '12345678',
+    verified: true,
+    banned: false,
+    last_active: new Date(),
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+];

@@ -1,0 +1,60 @@
+import { ActionIcon, createStyles, TextInput } from '@mantine/core'
+import { useDebouncedState } from '@mantine/hooks'
+import React from 'react'
+import { FaSearch } from 'react-icons/fa'
+
+const useStyles = createStyles(() => ({
+  input: {
+    width: '100%',
+    height: '40px',
+  },
+}))
+
+interface Props {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  onReturnValue: (value: string) => void
+}
+
+export default function SearchingFieldTable({
+  size = 'md',
+  onReturnValue,
+}: Props) {
+  const { classes } = useStyles()
+  const [value, setValue] = useDebouncedState('', 1000)
+
+  const onSearching = () => {
+    onReturnValue(value)
+  }
+  React.useEffect(() => {
+    onReturnValue(value)
+  }, [value, onReturnValue])
+  return (
+    <TextInput
+      placeholder="Searching"
+      onKeyUp={(e) => {
+        if (e.key === 'Enter') {
+          onSearching()
+        }
+      }}
+      radius="md"
+      onChange={(e) => setValue(e.currentTarget.value)}
+      className={classes.input}
+      rightSection={
+        <ActionIcon>
+          <FaSearch onClick={onSearching} size="0.8rem" />
+        </ActionIcon>
+      }
+      sx={{ width: '100%' }}
+      size={size}
+      styles={{
+        root: {
+          // mantine-Input-input mantine-TextInput-input mantine-y7odgk
+          '& .mantine-TextInput-input:focus-within ': {
+            borderColor: '#018B14',
+            // boxShadow: '0 0 0 1px red',
+          },
+        },
+      }}
+    />
+  )
+}
