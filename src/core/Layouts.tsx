@@ -45,7 +45,7 @@ export default function Layouts(params: Props) {
 }
 
 Layouts.defaultProps = {
-  title: 'Big Contag',
-  keyword: 'Contag Indonesia',
-  description: 'Contag Indonesia',
+  title: 'Melina Coffee',
+  keyword: 'Melina Coffee',
+  description: 'Melina Coffee',
 }

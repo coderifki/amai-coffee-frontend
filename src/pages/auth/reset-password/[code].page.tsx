@@ -4,7 +4,7 @@ import ResetPassword from '@/core/layouts/auth/reset-password'
 export default function VerifyForgotCodePage() {
   // console.log('masuk sini')
   return (
-    <Layouts title="Welcome To Contag Indonesia">
+    <Layouts title="Welcome To Melina Coffee">
       <ResetPassword />
     </Layouts>
   )

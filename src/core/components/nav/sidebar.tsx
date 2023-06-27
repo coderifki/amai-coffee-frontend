@@ -47,18 +47,18 @@ const linkData: LinksGroupProps[] = [
     link: '/academic/student/homework',
     group: 'student',
   },
-  {
-    label: 'Admission',
-    icon: IconNotes,
-    initiallyOpened: false,
-    group: 'academic',
-    links: [
-      {
-        label: 'Manage Admission',
-        link: '/academic/admission',
-      },
-    ],
-  },
+  // {
+  //   label: 'Admission',
+  //   icon: IconNotes,
+  //   initiallyOpened: false,
+  //   group: 'academic',
+  //   links: [
+  //     {
+  //       label: 'Manage Admission',
+  //       link: '/academic/admission',
+  //     },
+  //   ],
+  // },
   {
     label: 'Teachers',
     icon: IconNotes,
@@ -87,171 +87,171 @@ const linkData: LinksGroupProps[] = [
       // { label: 'Manage Student Card', link: '/academic/student/card' },
     ],
   },
-  {
-    label: 'Examination',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Exam Category', link: '/academic/student/add' },
-      { label: 'Offline Exam', link: '/academic/student' },
-      { label: 'Marks', link: '/academic/student/card' },
-      { label: 'Grades', link: '/academic/student/card' },
-    ],
-  },
-  {
-    label: 'Faculty',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Faculty', link: '/academic/master-data/faculty/add' },
-      { label: 'Manage Faculty', link: '/academic/master-data/faculty' },
-    ],
-  },
-  {
-    label: 'Rooms',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Room', link: '/academic/room/add' },
-      { label: 'Manage Room', link: '/academic/room' },
-    ],
-  },
-  {
-    label: 'Syllabus',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Syllabus', link: '/academic/faculty/add' },
-      { label: 'Manage Syllabus', link: '/academic/faculty' },
-    ],
-  },
-  {
-    label: 'Department',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Department', link: '/academic/department/add' },
-      { label: 'Manage Department', link: '/academic/department' },
-    ],
-  },
-  {
-    label: 'Subject',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Subject', link: '/academic/subject/add' },
-      { label: 'Manage Subject', link: '/academic/subject' },
-    ],
-  },
-  {
-    label: 'Course',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Course', link: '/academic/master-data/course/add' },
-      { label: 'Manage Course', link: '/academic/master-data/course' },
-    ],
-  },
-  {
-    label: 'Holiday',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Holiday', link: '/academic/holiday/add' },
-      { label: 'Manage Holiday', link: '/academic/holiday' },
-    ],
-  },
-  {
-    label: 'Fee',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Holiday', link: '/academic/holiday/add' },
-      { label: 'Manage Holiday', link: '/academic/holiday' },
-    ],
-  },
-  {
-    label: 'Period',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Period', link: '/academic/master-data/period/add' },
-      { label: 'Manage Period', link: '/academic/master-data/period' },
-    ],
-  },
-  {
-    label: 'Curriculum',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      {
-        label: 'Add Curriculum',
-        link: '/academic/master-data/curriculum/add',
-      },
-      {
-        label: 'Manage Curriculums',
-        link: '/academic/master-data/curriculum',
-      },
-    ],
-  },
-  {
-    label: 'Library',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Holiday', link: '/academic/holiday/add' },
-      { label: 'Manage Holiday', link: '/academic/holiday' },
-    ],
-  },
-  {
-    label: 'Attendance',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Student Attendance', link: '/academic/attendance/student' },
-      { label: 'Staff Attendance', link: '/academic/attendance/staff' },
-    ],
-  },
-  {
-    label: 'School',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add School', link: '/academic/school/add' },
-      { label: 'Management School', link: '/academic/school' },
-    ],
-  },
-  {
-    label: 'Area',
-    icon: IconCalendarStats,
-    group: 'area',
-    links: [
-      {
-        label: 'City',
-        link: '#',
-        open: false,
-        subLinks: [{ label: 'Manage City', link: '/areas/city' }],
-      },
-      {
-        label: 'Province',
-        link: '#',
-        open: false,
-        subLinks: [{ label: 'Manage Province', link: '/areas/province' }],
-      },
-    ],
-  },
-  {
-    label: 'Merchant',
-    icon: IconCalendarStats,
-    group: 'merchant',
-    links: [
-      {
-        label: 'Manage Merchant',
-        link: '/merchant',
-        open: false,
-      },
-    ],
-  },
+  // {
+  //   label: 'Examination',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Exam Category', link: '/academic/student/add' },
+  //     { label: 'Offline Exam', link: '/academic/student' },
+  //     { label: 'Marks', link: '/academic/student/card' },
+  //     { label: 'Grades', link: '/academic/student/card' },
+  //   ],
+  // },
+  // {
+  //   label: 'Faculty',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Faculty', link: '/academic/master-data/faculty/add' },
+  //     { label: 'Manage Faculty', link: '/academic/master-data/faculty' },
+  //   ],
+  // },
+  // {
+  //   label: 'Rooms',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Room', link: '/academic/room/add' },
+  //     { label: 'Manage Room', link: '/academic/room' },
+  //   ],
+  // },
+  // {
+  //   label: 'Syllabus',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Syllabus', link: '/academic/faculty/add' },
+  //     { label: 'Manage Syllabus', link: '/academic/faculty' },
+  //   ],
+  // },
+  // {
+  //   label: 'Department',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Department', link: '/academic/department/add' },
+  //     { label: 'Manage Department', link: '/academic/department' },
+  //   ],
+  // },
+  // {
+  //   label: 'Subject',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Subject', link: '/academic/subject/add' },
+  //     { label: 'Manage Subject', link: '/academic/subject' },
+  //   ],
+  // },
+  // {
+  //   label: 'Course',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Course', link: '/academic/master-data/course/add' },
+  //     { label: 'Manage Course', link: '/academic/master-data/course' },
+  //   ],
+  // },
+  // {
+  //   label: 'Holiday',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Holiday', link: '/academic/holiday/add' },
+  //     { label: 'Manage Holiday', link: '/academic/holiday' },
+  //   ],
+  // },
+  // {
+  //   label: 'Fee',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Holiday', link: '/academic/holiday/add' },
+  //     { label: 'Manage Holiday', link: '/academic/holiday' },
+  //   ],
+  // },
+  // {
+  //   label: 'Period',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Period', link: '/academic/master-data/period/add' },
+  //     { label: 'Manage Period', link: '/academic/master-data/period' },
+  //   ],
+  // },
+  // {
+  //   label: 'Curriculum',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     {
+  //       label: 'Add Curriculum',
+  //       link: '/academic/master-data/curriculum/add',
+  //     },
+  //     {
+  //       label: 'Manage Curriculums',
+  //       link: '/academic/master-data/curriculum',
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: 'Library',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Holiday', link: '/academic/holiday/add' },
+  //     { label: 'Manage Holiday', link: '/academic/holiday' },
+  //   ],
+  // },
+  // {
+  //   label: 'Attendance',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Student Attendance', link: '/academic/attendance/student' },
+  //     { label: 'Staff Attendance', link: '/academic/attendance/staff' },
+  //   ],
+  // },
+  // {
+  //   label: 'School',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add School', link: '/academic/school/add' },
+  //     { label: 'Management School', link: '/academic/school' },
+  //   ],
+  // },
+  // {
+  //   label: 'Area',
+  //   icon: IconCalendarStats,
+  //   group: 'area',
+  //   links: [
+  //     {
+  //       label: 'City',
+  //       link: '#',
+  //       open: false,
+  //       subLinks: [{ label: 'Manage City', link: '/areas/city' }],
+  //     },
+  //     {
+  //       label: 'Province',
+  //       link: '#',
+  //       open: false,
+  //       subLinks: [{ label: 'Manage Province', link: '/areas/province' }],
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: 'Merchant',
+  //   icon: IconCalendarStats,
+  //   group: 'merchant',
+  //   links: [
+  //     {
+  //       label: 'Manage Merchant',
+  //       link: '/merchant',
+  //       open: false,
+  //     },
+  //   ],
+  // },
   // {
   //   label: 'Subscription',
   //   icon: IconCalendarStats,
