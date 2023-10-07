@@ -13,8 +13,8 @@ const useStyles = createStyles((theme) => ({
   paper: {
     position: 'relative',
     // height: rem(280),
-    width: '100%',
-    height: '55vh',
+    // width: '100%',
+    height: '70vh',
     backgroundColor: 'rgb(255, 255, 255, 0.2)',
     display: 'inline-block',
     // opacity: 0.2,
@@ -99,10 +99,10 @@ export default function BackgroundCardDashboard() {
                 zIndex: 2,
               }}
             >
-              <LanguageButton />
+              {/* <LanguageButton /> */}
             </Grid.Col>
             <Grid.Col span={12}>
-              <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+              <MediaQuery smallerThan="xs" styles={{ display: 'flex' }}>
                 <Image
                   src={'/assets/images/dashboard/contag-card-dashboard.png'}
                   alt="contag-card-dashboard"

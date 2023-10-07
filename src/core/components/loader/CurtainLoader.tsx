@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 const DEFAULT_PRIMARY_HEX_COLOR = '#fff'
-const DEFAULT_IMAGE_URL_PROFILE = '/dev/contag_logo_navy.png'
+const DEFAULT_IMAGE_URL_PROFILE = '/dev/melina_coffee_logo1_removebg.png'
 
 const useStyles = createStyles(() => ({
   layer: {
@@ -53,9 +53,9 @@ export default function CurtainLoader() {
       <div>
         <img
           alt="company-logo"
-          height={120}
+          height={200}
           src={DEFAULT_IMAGE_URL_PROFILE}
-          width={120}
+          width={200}
         />
         {/* <Image
           alt="company-logo"

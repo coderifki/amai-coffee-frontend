@@ -13,7 +13,7 @@ import { FaLongArrowAltLeft } from 'react-icons/fa'
 
 const useStyles = createStyles(() => ({
   activeBreadcrumb: {
-    color: '#018B14',
+    color: '#BCA37F',
   },
   inactiveBreadcrumb: {
     color: '#112D3C',

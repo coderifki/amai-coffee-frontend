@@ -11,7 +11,7 @@ import React from 'react'
 
 const useStyles = createStyles(() => ({
   box: {
-    margin: '20px 0 20px 0',
+    margin: '0px 0 20px 0',
   },
 }))
 
@@ -20,8 +20,8 @@ export default function HomeDashboard() {
   // const [value, setValue] = React.useState<Date | null>(null)
   return (
     <>
-      <HeaderCardDashboard />
-      <Grid grow gutter="md" mt={35}>
+      {/* <HeaderCardDashboard /> */}
+      <Grid grow gutter="md" mt={2}>
         <Grid.Col xs={12} md={8}>
           <Box className={classes.box}>
             <LineChart />

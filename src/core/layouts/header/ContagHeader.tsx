@@ -1,7 +1,16 @@
 // import { useAuth } from '@core/contex/AuthUserProvider'
 import NotificationIcon from '@core/layouts/header/NotificationIcon'
 import UserButtonMenu from '@core/layouts/header/UserButtonMenu'
-import { Burger, createStyles, Grid, Header, Image, rem } from '@mantine/core'
+import {
+  Burger,
+  Text,
+  Title,
+  createStyles,
+  Grid,
+  Header,
+  Image,
+  rem,
+} from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { useRouter } from 'next/router'
 // import { IconChevronDown } from '@tabler/icons-react';
@@ -24,18 +33,18 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     paddingLeft: '20px',
   },
-  gridIconNotif: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingTop: '14px',
-  },
-  gridUserBUtton: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: '14px',
-  },
+  // gridIconNotif: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'flex-end',
+  //   paddingTop: '14px',
+  // },
+  // gridUserBUtton: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'flex-start',
+  //   paddingTop: '14px',
+  // },
 }))
 
 interface HeaderActionProps {
@@ -57,7 +66,7 @@ export function ContagHeader({ links, opened, setOpened }: HeaderActionProps) {
   // const { logOut } = useAuth()
   const { classes } = useStyles()
   const router = useRouter()
-  const largeScreen = useMediaQuery('(min-width: 48em)')
+  const largeScreen = useMediaQuery('(min-width: 12em)')
 
   return (
     <Header
@@ -76,8 +85,8 @@ export function ContagHeader({ links, opened, setOpened }: HeaderActionProps) {
           />
           {/* <MantineLogo size={28} /> */}
           <Image
-            width={'104px'}
-            src="/dev/contag_logo_navy.png"
+            width={'50px'}
+            src="/dev/melina_coffee_logo1_removebg.png"
             alt="header contag logo"
             sx={{
               marginTop: '5px',
@@ -86,13 +95,24 @@ export function ContagHeader({ links, opened, setOpened }: HeaderActionProps) {
             }}
             onClick={() => router.push('/dashboard')}
           />
+          <Text
+            variant="gradient"
+            gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+            sx={{ fontFamily: 'Greycliff CF, sans-serif' }}
+            ta="center"
+            px={12}
+            fz="xl"
+            fw={700}
+          >
+            Melina Coffee
+          </Text>
         </Grid.Col>
-        <Grid.Col className={classes.gridIconNotif} span={'auto'}>
+        {/* <Grid.Col className={classes.gridIconNotif} span={'auto'}>
           <NotificationIcon />
-        </Grid.Col>
-        <Grid.Col className={classes.gridUserBUtton} md={3} sm={3} xs={12}>
+        </Grid.Col> */}
+        {/* <Grid.Col className={classes.gridUserBUtton} md={3} sm={3} xs={8}>
           <UserButtonMenu />
-        </Grid.Col>
+        </Grid.Col> */}
       </Grid>
       {/* <CurtainLoader /> */}
       {/* <HeaderMenu links={links} /> */}

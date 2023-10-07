@@ -16,6 +16,7 @@ import {
   IconLock,
   IconLogout,
   IconNotes,
+  IconUserCircle,
 } from '@tabler/icons-react'
 // import { UserButton } from '../UserButton/UserButton'
 import {
@@ -30,22 +31,49 @@ import { groupBy } from '@utils/group.by.utils'
 const linkData: LinksGroupProps[] = [
   { label: 'Dashboard', icon: IconGauge, link: '/dashboard' },
   {
-    label: 'Homework',
+    label: 'Category Products',
     icon: IconGauge,
-    link: '/academic/student/homework',
-    group: 'student',
+    group: 'Product Management',
+    links: [
+      {
+        label: 'Add Product Category',
+        link: '/product-management/category-product/add',
+      },
+      {
+        label: 'Manage Product Categories',
+        link: '/product-management/category-product',
+      },
+    ],
   },
   {
-    label: 'Study Plan',
+    label: 'Product',
     icon: IconGauge,
-    link: '/academic/student/homework',
-    group: 'student',
+    group: 'Product Management',
+    links: [
+      {
+        label: 'Add Product',
+        link: '/product-management/product/add',
+      },
+      {
+        label: 'Manage Products',
+        link: '/product-management/product',
+      },
+    ],
   },
   {
-    label: 'Study Plan History',
+    label: 'Product Variant',
     icon: IconGauge,
-    link: '/academic/student/homework',
-    group: 'student',
+    group: 'Product Management',
+    links: [
+      {
+        label: 'Add Product Variant',
+        link: '/product-management/product-variant/add',
+      },
+      {
+        label: 'Manage Product Variants',
+        link: '/product-management/product-variant/',
+      },
+    ],
   },
   // {
   //   label: 'Admission',
@@ -83,6 +111,18 @@ const linkData: LinksGroupProps[] = [
       { label: 'Add Student', link: '/academic/student/add' },
       // { label: 'Add Student', link: '/user/mahasiswa/add' },
       { label: 'Manage Student', link: '/academic/student' },
+      // { label: 'Manage Student', link: '/user/mahasiswa' },
+      // { label: 'Manage Student Card', link: '/academic/student/card' },
+    ],
+  },
+  {
+    label: 'Transactions Management',
+    icon: IconCalendarStats,
+    group: 'transaction',
+    links: [
+      // { label: 'Add Student', link: '/academic/student/add' },
+      // { label: 'Add Student', link: '/user/mahasiswa/add' },
+      { label: 'Manage Transaction', link: '/transaction/transaction-detail' },
       // { label: 'Manage Student', link: '/user/mahasiswa' },
       // { label: 'Manage Student Card', link: '/academic/student/card' },
     ],
@@ -342,15 +382,24 @@ const linkData: LinksGroupProps[] = [
   //     },
   //   ],
   // },
-  { label: 'Settings', icon: IconAdjustments, group: 'settings' },
+  // { label: 'Settings', icon: IconAdjustments, group: 'settings' },
+  // {
+  //   label: 'Security',
+  //   icon: IconLock,
+  //   group: 'settings',
+  //   links: [
+  //     { label: 'Enable 2FA', link: '/' },
+  //     { label: 'Change password', link: '/' },
+  //     { label: 'Recovery codes', link: '/' },
+  //   ],
+  // },
   {
-    label: 'Security',
-    icon: IconLock,
-    group: 'settings',
+    label: 'User',
+    icon: IconUserCircle,
+    group: 'user',
     links: [
-      { label: 'Enable 2FA', link: '/' },
+      { label: 'User Detail', link: '/' },
       { label: 'Change password', link: '/' },
-      { label: 'Recovery codes', link: '/' },
     ],
   },
 ]
@@ -490,7 +539,7 @@ export const Sidebar = ({ opened }: SidebarProps) => {
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
 
-      {/*</Navbar.Section>*/}
+      {/* </Navbar.Section> */}
       <Navbar.Section className={classes.footer}>
         <Stack justify="center" spacing={0}>
           {/*<NavbarLink icon={IconSwitchHorizontal} label="Change account" />*/}

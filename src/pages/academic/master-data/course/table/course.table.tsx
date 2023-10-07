@@ -51,23 +51,6 @@ export const CourseTableComponent = ({
         accessorKey: 'course_type',
         header: 'Type',
       },
-      // {
-      //   accessorKey: 'user_id',
-      //   header: 'User',
-      //   cell: ({ row }) => {
-      //     return (
-      //       <Group spacing="xs" noWrap>
-      //         <Link
-      //           href={`/users/detail/${row.original?.user?.user_id}`}
-      //           className={'btn btn-link'}
-      //           passHref={true}
-      //         >
-      //           <Anchor>{row.original?.user?.email}</Anchor>
-      //         </Link>
-      //       </Group>
-      //     )
-      //   },
-      // },
       {
         id: 'actions',
         accessorKey: 'course_id',

@@ -4,6 +4,7 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/app/**/*.{js,ts,jsx,tsx}',
     './src/core/**/*.{js,ts,jsx,tsx}',
+    './node_modules/flowbite-react/**/*.js',
   ],
   corePlugins: {
     preflight: false,
@@ -17,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 }

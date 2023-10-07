@@ -10,7 +10,7 @@ export default function CourseListPage() {
   // queries
   const { data, isLoading, error } = useQuery({
     queryKey: [getAllCoursePagination.name, { page, limit }],
-    queryFn: () => getAllCoursePagination({ page, limit }, false),
+    queryFn: () => getAllCoursePagination({ page, limit }, true),
     refetchOnMount: true,
     keepPreviousData: false,
   })
@@ -18,6 +18,7 @@ export default function CourseListPage() {
   const onCurrentPageChange = (page: number) => {
     setPage(page)
   }
+  console.log({ data, isLoading, error })
   return (
     <AdminLayout>
       <CourseTableComponent

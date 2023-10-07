@@ -1,8 +1,8 @@
-import { Box, Grid, Image, Text } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Grid, Image, Text } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 
 export default function SideCardLogin() {
-  const largeScreen = useMediaQuery('(min-width: 73.75em)');
+  const largeScreen = useMediaQuery('(min-width: 73.75em)')
 
   return (
     <Grid.Col
@@ -13,9 +13,9 @@ export default function SideCardLogin() {
       <Image
         radius={'30px 0 0 30px'}
         height={'43em'}
-        src="/assets/images/login/login_side_card_bg.png"
+        src="/assets/images/login/coffee_logo.png"
         alt="Random unsplash image"
-        sx={{ position: 'absolute', zIndex: -1 }}
+        sx={{ position: 'absolute', zIndex: -1, filter: 'blur(2px)' }}
       />
       <Box
         sx={{
@@ -27,14 +27,14 @@ export default function SideCardLogin() {
           zIndex: 1,
         }}
       />
-      <Image
+      {/* <Image
         src="/assets/images/login/indonesia_map.png"
         alt="Random unsplash image"
         sx={{ position: 'absolute', marginTop: 30, zIndex: 1 }}
-      />
+      /> */}
       <Image
         width={'125px'}
-        src="/assets/images/login/contag_logo_green.png"
+        src="/assets/images/login/melina_coffee_logo1_removebg.png"
         alt="Random unsplash image"
         sx={{
           position: 'absolute',
@@ -65,7 +65,7 @@ export default function SideCardLogin() {
           fz={largeScreen ? '44px' : '34px'}
           fw={700}
         >
-          Smart Bussiness Card to Open
+          Melina Coffee
         </Text>
         <Text
           c={'#018B14'}
@@ -82,5 +82,5 @@ export default function SideCardLogin() {
         </Text>
       </Box>
     </Grid.Col>
-  );
+  )
 }

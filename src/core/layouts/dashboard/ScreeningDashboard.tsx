@@ -16,14 +16,17 @@ const useStyles = createStyles(() => ({
   containerCardChoose: {
     position: 'absolute',
     top: '45vh',
-    bottom: '0',
+    bottom: '-1',
     left: '0',
     right: '0',
+    display: 'flex',
+    justifyContent: 'center',
   },
   card: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '300px',
   },
   tooltip: {
     position: 'absolute',
@@ -48,7 +51,7 @@ export default function ScreeningDashboard() {
             {datas &&
               datas.length > 0 &&
               datas.map((data, index) => (
-                <Grid.Col key={index} className={classes.card} md={3} xs={6}>
+                <Grid.Col key={index} className={classes.card} md={6} xs={6}>
                   <ImageCard
                     title={data.title}
                     image={data.image}
@@ -59,9 +62,9 @@ export default function ScreeningDashboard() {
               ))}
           </Grid>
         </div>
-        <div className={classes.tooltip}>
+        {/* <div className={classes.tooltip}>
           <TooltipHelp message="This is tooltip help" />
-        </div>
+        </div> */}
       </div>
     </Box>
   )

@@ -24,6 +24,7 @@ interface StudentTableProps {
   currentPage: number
   onCurrentPageChange: (page: number) => void
 }
+// {/* {props.row.original?.user?.personal_data?.full_name} */}
 
 export const StudentTableComponent = ({
   isLoading,
@@ -38,13 +39,6 @@ export const StudentTableComponent = ({
       {
         accessorKey: 'student_name',
         header: 'Name',
-        cell: (props) => {
-          return (
-            <Group spacing="xs" noWrap>
-              {props.row.original?.user?.personal_data?.full_name}
-            </Group>
-          )
-        },
       },
       {
         accessorKey: 'user',

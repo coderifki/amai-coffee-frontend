@@ -41,15 +41,15 @@ export default function AddFacultyForm({
     },
   })
   const handleSubmit = (data: IAddForm) => {
-    const schoolId = '6456c7073ded35a70e486b2f'
-    let createdBy = ''
-    if (parseJson && parseJson.username) {
-      createdBy = parseJson.username
-    }
+    // const schoolId = '6456c7073ded35a70e486b2f'
+    // let createdBy = ''
+    // if (parseJson && parseJson.username) {
+    //   createdBy = parseJson.username
+    // }
     const tmpValue: IFaculty = {
-      created_by: createdBy,
+      // created_by: createdBy,
+      // school_id: schoolId,
       faculty_name: data.faculty_name,
-      school_id: schoolId,
     }
     onFormSubmit(tmpValue)
   }

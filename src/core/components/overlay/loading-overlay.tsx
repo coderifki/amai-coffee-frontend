@@ -10,7 +10,7 @@ export default function OverlayLoading({ isLoading = false }: Props) {
       <LoadingOverlay
         visible={isLoading}
         overlayBlur={2}
-        loaderProps={{ size: 'xl', color: '#018B14', variant: 'dots' }}
+        loaderProps={{ size: 'xl', color: '#BCA37F', variant: 'dots' }}
         overlayOpacity={0.3}
         overlayColor="#c5c5c5"
       />

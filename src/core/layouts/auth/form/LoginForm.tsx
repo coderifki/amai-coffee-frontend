@@ -139,7 +139,7 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
             >
               Welcome Back
             </Text>
-            <Text
+            {/* <Text
               c={'#2E3261'}
               sx={{
                 fontFamily: 'Segoe UI, Poppins, sans-serif',
@@ -154,7 +154,7 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
               <span style={{ color: '#018B14', cursor: 'pointer' }}>
                 Register
               </span>
-            </Text>
+            </Text> */}
             <Box sx={{ marginTop: '66px' }}>
               {/* form for login */}
               <form
@@ -192,7 +192,7 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
                   withAsterisk
                 />
 
-                <Text
+                {/* <Text
                   c={'#CE2166'}
                   // component="a"
                   // href="#"
@@ -213,7 +213,7 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
                   }}
                 >
                   Forgot password?
-                </Text>
+                </Text> */}
                 <Button
                   sx={() => ({
                     marginTop: '71px',

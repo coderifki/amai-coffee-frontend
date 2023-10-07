@@ -1,7 +1,7 @@
-import { createStyles, getStylesRef } from '@mantine/core';
+import { createStyles, getStylesRef } from '@mantine/core'
 
 interface Props {
-  image: string;
+  image: string
 }
 const useStyles = createStyles((theme) => ({
   image: {
@@ -32,9 +32,9 @@ const useStyles = createStyles((theme) => ({
     // backgroundImage:
     //   'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .85) 90%)',
   },
-}));
+}))
 export default function BackgroudnImage({ image }: Props) {
-  const { classes } = useStyles();
+  const { classes } = useStyles()
   return (
     <>
       <div
@@ -43,5 +43,5 @@ export default function BackgroudnImage({ image }: Props) {
       />
       <div className={classes.overlay} />
     </>
-  );
+  )
 }

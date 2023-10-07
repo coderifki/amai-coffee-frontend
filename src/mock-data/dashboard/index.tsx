@@ -1,29 +1,29 @@
 export const choose = [
+  // {
+  //   title: 'School',
+  //   image: '/assets/images/dashboard/dashboard_choose_school.png',
+  //   link: '/auth/login',
+  //   value: 'academic',
+  // },
   {
-    title: 'School',
-    image: '/assets/images/dashboard/dashboard_choose_school.png',
-    link: '/auth/login',
-    value: 'academic',
-  },
-  {
-    title: 'Business',
+    title: 'Cashier',
     image: '/assets/images/dashboard/dashboard_choose_business.png',
     link: '/auth/login',
-    value: 'business',
+    value: 'cahier',
   },
   {
-    title: 'Personal',
+    title: 'Admin',
     image: '/assets/images/dashboard/dashboard_choose_personal.png',
     link: '/auth/login',
-    value: 'personal',
+    value: 'admin',
   },
-  {
-    title: 'Organization',
-    image: '/assets/images/dashboard/dashboard_choose_organization.png',
-    link: '/auth/login',
-    value: 'organization',
-  },
-];
+  // {
+  //   title: 'Organization',
+  //   image: '/assets/images/dashboard/dashboard_choose_organization.png',
+  //   link: '/auth/login',
+  //   value: 'organization',
+  // },
+]
 
 export const menuItem = {
   links: [
@@ -108,7 +108,7 @@ export const menuItem = {
       ],
     },
   ],
-};
+}
 
 export const DataSelectedActivity = [
   {
@@ -136,7 +136,7 @@ export const DataSelectedActivity = [
     value: 'Spongebob Squarepants',
     description: 'Not just a sponge',
   },
-];
+]
 
 export const CardHeaderIcon = [
   {
@@ -159,7 +159,7 @@ export const CardHeaderIcon = [
     title: 'Kegiatan',
     count: 285,
   },
-];
+]
 
 export const staticLineChatData = [
   {
@@ -182,20 +182,20 @@ export const staticLineChatData = [
     percentage: '+49%',
     description: 'Unique Visitors',
   },
-];
+]
 
-export const aplicationData = [
-  {
-    title: 'Libur',
-    count: 0,
-    description: 'Ajukan Libur Semester',
-  },
-  {
-    title: 'Libur',
-    count: 0,
-    description: 'Ajukan Libur Semester',
-  },
-];
+// export const aplicationData = [
+//   {
+//     title: 'Libur',
+//     count: 0,
+//     description: 'Ajukan Libur Semester',
+//   },
+//   {
+//     title: 'Libur',
+//     count: 0,
+//     description: 'Ajukan Libur Semester',
+//   },
+// ]
 
 export const comingSoonActivity = [
   {
@@ -206,4 +206,4 @@ export const comingSoonActivity = [
     date: '8 May 2023',
     description: 'Ajukan Libur Semester',
   },
-];
+]

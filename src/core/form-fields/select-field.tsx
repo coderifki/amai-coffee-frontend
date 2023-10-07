@@ -1,4 +1,4 @@
-import { createStyles, Select } from '@mantine/core'
+import { createStyles, Select, SelectProps } from '@mantine/core'
 
 const useStyles = createStyles(() => ({
   selectField: {
@@ -46,7 +46,7 @@ export default function SelectField({
   required = false,
   data,
   ...other
-}: Props) {
+}: Props & SelectProps) {
   const { classes } = useStyles()
   return (
     <>

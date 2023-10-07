@@ -1,5 +1,5 @@
 import AplicationButtonDashboard from '@/core/components/button/AplicationButtonDashboard'
-import { aplicationData } from '@/mock-data/dashboard'
+// import { aplicationData } from '@/mock-data/dashboard'
 import { Center, createStyles, Flex, Paper, Text } from '@mantine/core'
 import { FaExclamationCircle } from 'react-icons/fa'
 
@@ -41,9 +41,9 @@ export default function PaperForAplicationDashboard() {
           count={0}
           description="Ajukan Libur Semester"
         /> */}
-        {aplicationData.map((item, index) => (
+        {/* {aplicationData.map((item, index) => (
           <AplicationButtonDashboard key={index} {...item} />
-        ))}
+        ))} */}
         {/* <UserButton
           key={index}
           image={item.imageUrl}

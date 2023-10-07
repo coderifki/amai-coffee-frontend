@@ -6,7 +6,7 @@ import axios, {
 } from 'axios'
 import { CookieJar } from 'tough-cookie'
 import { wrapper } from 'axios-cookiejar-support'
-import { deleteCookie } from 'cookies-next'
+import { deleteCookie, getCookie } from 'cookies-next'
 
 interface IApiClientConfig extends InternalAxiosRequestConfig {
   accessToken?: string
@@ -86,23 +86,23 @@ class ApiClient {
 
   private interceptResponse = (response: AxiosResponse) => {
     return response
-    // try {
-    //   // if (response.data && response.data.accessToken) {
-    //   //     this.setAuthHeader(response.data.accessToken)
-    //   // }
-    //   return response
-    // } catch (e: unknown) {
-    //   if (axios.isAxiosError(e)) {
-    //     console.trace('e.response', e.response)
-    //   }
-    //   console.trace('e', e)
-    //   // if (Axios.isAxiosError(e)){
-    //   // if(e.response === 401) {
-    //   //   console.trace('e.response', e.response)
-    //   // }
-    // }
-    // const getUserCookie = getCookie('user')
-    // console.trace('getUserCookie', getUserCookie)
+    try {
+      if (response.data && response.data.accessToken) {
+        this.setAuthHeader(response.data.accessToken)
+      }
+      return response
+    } catch (e: unknown) {
+      if (axios.isAxiosError(e)) {
+        // console.trace('e.response', e.response)
+      }
+      console.trace('e', e)
+      // if (Axios.isAxiosError(e)){
+      // if(e.response === 401) {
+      //   console.trace('e.response', e.response)
+      // }
+    }
+    const getUserCookie = getCookie('user')
+    console.trace('getUserCookie', getUserCookie)
     // if (e.status === 401 && getUserCookie) {
     //   //   deleteCookie('user')
     //   // }

@@ -1,3 +1,4 @@
+import Navbar from '@/core/components/customers/Header'
 import '@/styles/globals.css'
 import { AuthUserProvider } from '@contex/AuthUserProvider'
 import { MantineProvider } from '@mantine/core'
@@ -41,6 +42,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <DatesProvider
             settings={{ locale: 'ru', firstDayOfWeek: 0, weekendDays: [0] }}
           >
+            {/* <Navbar /> */}
             {/* <BrowserRouter> */}
             <Component {...pageProps} />
             {/* </BrowserRouter> */}
