@@ -7,15 +7,15 @@ interface ProductCardProps {
   title: string
   description: string
   // price: number
-  linkText: string
-  linkUrl: string
+  imageUrl: string
+  // linkText: string
+  // linkUrl: string
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   title,
   description,
-  linkText,
-  linkUrl,
+  imageUrl,
 }) => {
   useEffect(() => {
     Aos.init()
@@ -25,18 +25,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
   }, []) // Only run this effect once when the component mounts
   return (
-    <div
-      data-aos="fade-up"
-      data-aos-duration="2000"
-      className="p-8 rounded-md bg-white shadow-md"
-    >
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
-      <div className="text-gray-600 mb-4">{description}</div>
-      {/* <div className="text-gray-600 mb-4">{price}</div> */}
-      <Link href={linkUrl} passHref>
-        <div className="text-red-300">{linkText}</div>
-      </Link>
-    </div>
+    <>
+      <div className="flex p-8 bg-white">
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-2/5 mr-4 object-cover object-left max-h-32"
+        />
+        <div className="w-1/2">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
+          <div className="text-gray-600 mb-4">{description}</div>
+          {/* <Link href={linkUrl} passHref>
+            <div className="text-red-300">{linkText}</div>
+          </Link> */}
+        </div>
+      </div>
+    </>
   )
 }
 
