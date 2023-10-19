@@ -33,7 +33,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className="w-2/5 mr-4 object-cover object-left max-h-32"
         />
         <div className="w-1/2">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
+          <h2 className="text-2xl font-semibold text-[#A75D5D] mb-4">
+            {title}
+          </h2>
           <div className="text-gray-600 mb-4">{description}</div>
           {/* <Link href={linkUrl} passHref>
             <div className="text-red-300">{linkText}</div>

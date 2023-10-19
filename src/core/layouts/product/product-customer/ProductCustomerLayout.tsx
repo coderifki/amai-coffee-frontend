@@ -30,7 +30,7 @@ export function ProductCustomerLayout() {
         <div className="flex justify-center">
           <TextLogo title="Our Menu" />
         </div>
-        <div className="text-[#A75D5D] font-semibold text-center px-5 mb-10 sm:text-xl">
+        <div className="text-[#A75D5D] font-semibold text-center px-16 mb-10 sm:text-xl">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -51,7 +51,7 @@ export function ProductCustomerLayout() {
         className=" container mx-auto"
       >
         <TextLogo title="Coffee Drinks" />
-        <div className="text-[#A75D5D] font-semibold text-center px-5 mb-10 sm:text-xl">
+        <div className="text-gray-600 font-semibold text-center px-16 mb-10 sm:text-xl">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -117,7 +117,7 @@ export function ProductCustomerLayout() {
         className=" container mx-auto"
       >
         <TextLogo title="Non-Coffee Drinks" />
-        <div className="text-[#A75D5D] font-semibold text-center px-5 mb-10 sm:text-xl">
+        <div className="text-gray-600 font-semibold text-center px-5 mb-10 sm:text-xl">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -183,7 +183,7 @@ export function ProductCustomerLayout() {
         className=" container mx-auto"
       >
         <TextLogo title="Foods" />
-        <div className="text-[#A75D5D] font-semibold text-center px-5 mb-10 sm:text-xl">
+        <div className="text-gray-600 font-semibold text-center px-5 mb-10 sm:text-xl">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -248,7 +248,7 @@ export function ProductCustomerLayout() {
         className=" container mx-auto"
       >
         <TextLogo title="Snacks" />
-        <div className="text-[#A75D5D] font-semibold text-center px-5 mb-10 sm:text-xl">
+        <div className="text-gray-600 font-semibold text-center px-5 mb-10 sm:text-xl">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and

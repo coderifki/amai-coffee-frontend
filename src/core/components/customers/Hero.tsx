@@ -16,7 +16,7 @@ export default function Hero() {
               // placeholder="blur"
               alt="Coffee grinder"
             />
-            <div className="absolute inset-0 bg-orange-100 mix-blend-multiply " />
+            <div className="absolute inset-0 bg-orange-100 mix-blend-multiply" />
           </div>
           <div className="relative px-4 hover:font-outline-4 drop-shadow-[0_1.5px_1.2px_rgba(0,0,0,0.8)] py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 ">
             <div className="relative left-0 right-0 mx-auto mt-5 max-w-xl text-center lg:text-4xl sm:text-xl font-semibold uppercase tracking-wide text-[#A75D5D]">
@@ -34,12 +34,12 @@ export default function Hero() {
                 href="/product-customer"
                 className="gap-y-16 mx-auto mt-10 max-w-xs sm:max-w-none sm:justify-center justify-center"
               >
-                <button className="mx-auto marfi btn  hover:shadow-[0_4px_0px_rgb(0,0,0)]  hover:translate-y-1 items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-[#A75D5D] shadow-sm hover:bg-orange-100 sm:px-6 transition duration-300 ease-in-out">
+                <button className="marfi btn  hover:shadow-[0_4px_0px_rgb(0,0,0)]  hover:translate-y-1 items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-[#A75D5D] shadow-sm hover:bg-orange-100 sm:px-6 transition duration-300 ease-in-out">
                   Shop coffees
                 </button>
               </Link>
               <Link href="/about-customer">
-                <button className="mx-auto btn  hover:shadow-[0_4px_0px_rgb(0,0,0)]  hover:translate-y-1   gap-y-8 items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-[#A75D5D] shadow-sm hover:bg-orange-100 sm:px-6 transition duration-300 ease-in-out">
+                <button className=" btn  hover:shadow-[0_4px_0px_rgb(0,0,0)]  hover:translate-y-1   gap-y-8 items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-[#A75D5D] shadow-sm hover:bg-orange-100 sm:px-6 transition duration-300 ease-in-out">
                   See Our Dily Specials
                 </button>
               </Link>
