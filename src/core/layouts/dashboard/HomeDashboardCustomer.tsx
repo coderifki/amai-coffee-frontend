@@ -3,7 +3,9 @@ import CardHomeCustomer from '@/core/components/customers/CardHomeCustomer'
 import Footer from '@/core/components/customers/Footer'
 import Navbar from '@/core/components/customers/Header'
 import Hero from '@/core/components/customers/Hero'
+import MetaCustomer from '@/core/components/customers/MetaCustomer'
 import TextLogo from '@/core/components/customers/TextLogo'
+import Head from 'next/head'
 
 // const slides = [
 //   <img
@@ -25,6 +27,7 @@ import TextLogo from '@/core/components/customers/TextLogo'
 export function HomeDashboardCustomer() {
   return (
     <div className="min-h-screen bg-gray-100 ">
+      <MetaCustomer></MetaCustomer>
       <Navbar></Navbar>
       <Hero></Hero>
       <div

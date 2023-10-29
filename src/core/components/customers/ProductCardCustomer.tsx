@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import 'aos/dist/aos.css'
 
-interface ProductCardProps {
+interface ProductCardCustomerProps {
   title: string
   description: string
   // price: number
@@ -12,7 +12,7 @@ interface ProductCardProps {
   // linkUrl: string
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
+const ProductCardCustomer: React.FC<ProductCardCustomerProps> = ({
   title,
   description,
   imageUrl,
@@ -46,4 +46,4 @@ const ProductCard: React.FC<ProductCardProps> = ({
   )
 }
 
-export default ProductCard
+export default ProductCardCustomer

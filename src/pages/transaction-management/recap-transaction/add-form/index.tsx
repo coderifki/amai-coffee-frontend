@@ -1,24 +1,13 @@
-import InputField from '@/core/form-fields/input-field'
 import SelectField from '@/core/form-fields/select-field'
 import TextField from '@/core/form-fields/text-field'
 import { UserEntity } from '@/features/auth/user/user.model'
-import { ProductEntity } from '@/features/product-management/product/product.model'
+import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import { SubmitCreateProduct } from '@/pages/product-management/product/add-form/add-form-model'
 import { removeEmptyKey } from '@/utils/remove-empty-key'
-import {
-  Avatar,
-  Button,
-  Center,
-  Flex,
-  Grid,
-  Space,
-  Text,
-  createStyles,
-} from '@mantine/core'
+import { Button, Flex, Grid, Space, Text, createStyles } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { getCookie } from 'cookies-next'
 import React from 'react'
-import { FaUserAlt } from 'react-icons/fa'
 
 const useStyles = createStyles(() => ({
   gridContainer: {
@@ -31,15 +20,9 @@ const useStyles = createStyles(() => ({
     border: 'none',
     color: '#fff',
   },
-  placeholder: {
-    '& .mantine-Avatar-placeholder': {
-      // color: '#868E96',
-      backgroundColor: '#CED4DA',
-    },
-  },
 }))
 
-export default function ProductForm({
+export default function CategoryProductForm({
   onFormSubmit,
   defaultValues,
   isLoading,
@@ -49,38 +32,22 @@ export default function ProductForm({
     initialValues: {
       id: '',
       name: '',
-      price: 0,
-      cat_product_id: '',
-      file: '',
     },
     validate: {
       // informasi umum
       name: (value) => (value ? null : 'Nama Product harus diisi'),
-      price: (value) => (value && value !== 0 ? null : 'Masukan harga product'),
-      cat_product_id: (value) => (value ? null : 'Pilih salah satu kategori'),
-      file: (value) => (value ? null : 'Ungaah Foto Produk'),
     },
   })
-
-  const handleSubmit = (data: ProductEntity) => {
+  const handleSubmit = (data: CategoryProductEntity) => {
     const tmpData = {
       ...data,
-      price: Number(data.price),
     }
     onFormSubmit(removeEmptyKey(tmpData))
   }
-
-  const preview =
-    form?.values?.file && typeof form?.values?.file !== 'string'
-      ? URL.createObjectURL(form?.values?.file)
-      : (form?.values?.file as string)
-
   React.useEffect(() => {
     if (defaultValues) {
       form.setFieldValue('id', defaultValues?.id || '')
       form.setFieldValue('name', defaultValues?.name || '')
-      form.setFieldValue('price', defaultValues?.price || 0)
-      form.setFieldValue('cat_product_id', defaultValues?.cat_product_id || '')
     }
   }, [defaultValues])
   return (
@@ -90,40 +57,36 @@ export default function ProductForm({
         <Grid>
           <Grid.Col xs={12} md={12}>
             <Text fw={700} color={'#112D3C'} size={'md'}>
-              Tambah Produk
+              Tambah Kategori Produk
             </Text>
           </Grid.Col>
           <Grid.Col xs={12} md={6}>
             <TextField
-              label="Nama Produk"
-              placeholder="Produk"
+              label="Nama Kategori Produk"
+              placeholder="Kategori Produk"
               required={true}
               {...form.getInputProps('name')}
             />
           </Grid.Col>
-          <Grid.Col xs={12} md={6}>
-            <SelectField
+          <Grid.Col xs={12} md={12}>
+            {/* <SelectField
               label="Kategori"
               placeholder="Pilih kategori produk"
               required={true}
               data={[
                 {
-                  label: 'Makanan',
+                  label: 'Category One',
                   value: '64cbd183ed0fdf91172ba694',
                 },
                 {
-                  label: 'Minuman',
+                  label: 'Category Two',
                   value: '64cbf7d2ed0fdf91172ba695',
-                },
-                {
-                  label: 'Snack',
-                  value: '64e31a4b00035796ad46be59',
                 },
               ]}
               {...form.getInputProps('cat_product_id')}
-            />
+            /> */}
           </Grid.Col>
-          <Grid.Col xs={12} md={6}>
+          {/* <Grid.Col xs={12} md={6}>
             <TextField
               label="Harga produk"
               placeholder="Harga"
@@ -131,31 +94,7 @@ export default function ProductForm({
               required={true}
               {...form.getInputProps('price')}
             />
-          </Grid.Col>
-          <Grid.Col xs={12} md={6}>
-            <InputField
-              label="Unggah Foto"
-              placeholder="Unggah Foto"
-              acceptType="image/png,image/jpeg,image/jpg"
-              required={true}
-              {...form.getInputProps('file')}
-            />
-          </Grid.Col>
-          <Grid.Col xs={12} md={12}>
-            <Center>
-              {!preview ? (
-                <Avatar
-                  className={classes.placeholder}
-                  size="xl"
-                  sx={{ backgroundColor: '#CED4DA' }}
-                >
-                  <FaUserAlt />
-                </Avatar>
-              ) : (
-                <Avatar size="xl" src={preview} />
-              )}
-            </Center>
-          </Grid.Col>
+          </Grid.Col> */}
         </Grid>
         <Grid>
           <Grid.Col md={12} xs={12}>

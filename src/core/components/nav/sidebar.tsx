@@ -31,7 +31,7 @@ import { groupBy } from '@utils/group.by.utils'
 const linkData: LinksGroupProps[] = [
   { label: 'Dashboard', icon: IconGauge, link: '/dashboard' },
   {
-    label: 'Category Products',
+    label: 'Category Product',
     icon: IconGauge,
     group: 'Product Management',
     links: [
@@ -75,6 +75,35 @@ const linkData: LinksGroupProps[] = [
       },
     ],
   },
+  {
+    label: 'Transaction',
+    icon: IconCalendarStats,
+    group: 'Transaction Management',
+    links: [
+      // { label: 'Add Student', link: '/academic/student/add' },
+      // { label: 'Add Student', link: '/user/mahasiswa/add' },
+      {
+        label: 'Add Transaction',
+        link: '/transaction-management/manage-transaction/add',
+      },
+      {
+        label: 'Manage Transactions',
+        link: '/transaction-management/manage-transaction',
+      },
+      // { label: 'Manage Student Card', link: '/academic/student/card' },
+    ],
+  },
+  {
+    label: 'Recap Transaction',
+    icon: IconCalendarStats,
+    group: 'Transaction Management',
+    links: [
+      // { label: 'Add Student', link: '/academic/student/add' },
+      // { label: 'Add Student', link: '/user/mahasiswa/add' },
+      { label: 'Manage Recap Transaction', link: '/recap/' },
+      // { label: 'Manage Student Card', link: '/academic/student/card' },
+    ],
+  },
   // {
   //   label: 'Admission',
   //   icon: IconNotes,
@@ -115,18 +144,7 @@ const linkData: LinksGroupProps[] = [
       // { label: 'Manage Student Card', link: '/academic/student/card' },
     ],
   },
-  {
-    label: 'Transactions Management',
-    icon: IconCalendarStats,
-    group: 'transaction',
-    links: [
-      // { label: 'Add Student', link: '/academic/student/add' },
-      // { label: 'Add Student', link: '/user/mahasiswa/add' },
-      { label: 'Manage Transaction', link: '/transaction/transaction-detail' },
-      // { label: 'Manage Student', link: '/user/mahasiswa' },
-      // { label: 'Manage Student Card', link: '/academic/student/card' },
-    ],
-  },
+
   // {
   //   label: 'Examination',
   //   icon: IconCalendarStats,

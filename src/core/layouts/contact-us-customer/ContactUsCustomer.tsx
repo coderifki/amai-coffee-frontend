@@ -1,5 +1,6 @@
 import Footer from '@/core/components/customers/Footer'
 import Navbar from '@/core/components/customers/Header'
+import MetaCustomer from '@/core/components/customers/MetaCustomer'
 import TextLogo from '@/core/components/customers/TextLogo'
 
 // const slides = [
@@ -23,6 +24,7 @@ export function ContactUsCustomer() {
   // const [opened, { open, close }] = useDisclosure(false)
   return (
     <div className="min-h-screen bg-gray-100 ">
+      <MetaCustomer></MetaCustomer>
       <Navbar></Navbar>
       <div className="bg-white mt-16 pb-1">
         <div className="flex justify-center">
@@ -95,7 +97,7 @@ export function ContactUsCustomer() {
       {/* Maps */}
       <TextLogo title="Our Location" />
 
-      <div className="flex md:justify-start sm:justify-center mb-8 text-[#A75D5D] font-semibold  px-16 lg:text-md text-xl sm:text-xl md:text-base">
+      <div className="flex md:justify-center sm:justify-center mb-8 text-[#A75D5D] font-semibold px-16 lg:text-md text-xl sm:text-xl md:text-base">
         <div className="flex justify-center">
           <a
             href="https://maps.app.goo.gl/4R2GbQBWMU4k62eh7"

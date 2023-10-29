@@ -6,7 +6,7 @@ import { ProductTableComponent } from '@/pages/product-management/product/table/
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 
-export default function CategoryProductListPage() {
+export default function ProductListPage() {
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(5)
   // queries

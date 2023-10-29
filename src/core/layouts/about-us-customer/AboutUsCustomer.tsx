@@ -1,5 +1,6 @@
 import Footer from '@/core/components/customers/Footer'
 import Navbar from '@/core/components/customers/Header'
+import MetaCustomer from '@/core/components/customers/MetaCustomer'
 import TextLogo from '@/core/components/customers/TextLogo'
 
 // const slides = [
@@ -23,6 +24,7 @@ export function AboutUsCustomer() {
   // const [opened, { open, close }] = useDisclosure(false)
   return (
     <div className="min-h-screen bg-gray-100 ">
+      <MetaCustomer></MetaCustomer>
       <Navbar></Navbar>
       <div className="bg-white mt-16 pb-6">
         <div className="flex justify-center">

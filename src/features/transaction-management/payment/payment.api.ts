@@ -1,4 +1,4 @@
-import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
+import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
 import { apiClient } from '@core/api/base.api'
 import { BasePaginatedResponse, BaseResponse } from '@core/api/base.response'
 import { Builder } from 'builder-pattern'
@@ -8,49 +8,57 @@ interface GetAllPaginationRequest {
   limit: number
 }
 
-const mockList: CategoryProductEntity[] = [
+const mockList: PaymentMethodEntity[] = [
   {
-    // cat_product_id: 'cat1',
-    id: '1',
-    name: 'categoryproduct',
+    id: '',
+    payment_method_id: '1',
+    payment_method_name: 'payment 1',
+    payment_amount: '120000',
+    customer_name: 'Bekih',
   },
 ]
 
-const mockData: CategoryProductEntity = {
-  // cat_product_id: 'cat1',
-  id: '1',
-  name: 'categoryproduct',
+const mockData: PaymentMethodEntity = {
+  id: '',
+  payment_method_id: '2',
+  payment_method_name: 'payment 2',
+  payment_amount: '12000',
+  customer_name: 'Bekah',
 }
 
-export function createCatProduct(props: CategoryProductEntity) {
+// this function doesn't work because the backend doesn't yet create the payment method
+export function createPayment(props: PaymentMethodEntity) {
   return apiClient.post('categoryproducts/create', props, {
     accessToken: 'token',
   })
 }
 
-export function updateCatProduct(props: CategoryProductEntity) {
-  return apiClient.patch(`categoryproducts/update/${props.id}`, props)
+export function updatePayment(props: PaymentMethodEntity) {
+  return apiClient.patch(
+    `categoryproducts/update/${props.payment_method_id}`,
+    props
+  )
 }
 
-export async function getCategoryProductById(query: string) {
-  const result = await apiClient.get<BaseResponse<CategoryProductEntity>>(
+export async function getPaymentById(query: string) {
+  const result = await apiClient.get<BaseResponse<PaymentMethodEntity>>(
     `/categoryproducts/find${query}`
   )
   return result.data.data
 }
 
-export async function getAllCategoryProductPagination(
+export async function getAllPaymentPagination(
   props: GetAllPaginationRequest,
   mock = false
 ) {
   const { page, limit } = props
-  let result: CategoryProductEntity[]
+  let result: PaymentMethodEntity[]
 
   const responseBuilder =
-    Builder<BasePaginatedResponse<CategoryProductEntity[]>>()
+    Builder<BasePaginatedResponse<PaymentMethodEntity[]>>()
   if (!mock) {
     const fetchApi = await apiClient.get<
-      BasePaginatedResponse<CategoryProductEntity[]>
+      BasePaginatedResponse<PaymentMethodEntity[]>
     >('/categoryproducts', {
       params: {
         page,

@@ -1,6 +1,7 @@
 import Footer from '@/core/components/customers/Footer'
 import Navbar from '@/core/components/customers/Header'
-import ProductCard from '@/core/components/customers/ProductCard'
+import MetaCustomer from '@/core/components/customers/MetaCustomer'
+import ProductCardCustomer from '@/core/components/customers/ProductCardCustomer'
 import TextLogo from '@/core/components/customers/TextLogo'
 import { useDisclosure } from '@mantine/hooks'
 
@@ -25,6 +26,7 @@ export function ProductCustomerLayout() {
   // const [opened, { open, close }] = useDisclosure(false)
   return (
     <div className="min-h-screen bg-gray-100 ">
+      <MetaCustomer></MetaCustomer>
       <Navbar></Navbar>
       <div className="bg-white mt-16 pb-6">
         <div className="flex justify-center">
@@ -65,42 +67,42 @@ export function ProductCustomerLayout() {
 
         <section className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-8 pb-16 px-10 ">
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Coffee"
               description="Explore our wide range of delicious coffee and pastries made with the finest ingredients."
               imageUrl="/assets/images/card-product/Image-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Non-Coffee"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Non-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Food"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Nasi-Goreng-2.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
@@ -131,42 +133,42 @@ export function ProductCustomerLayout() {
 
         <section className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-8 pb-16 px-10 ">
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Coffee"
               description="Explore our wide range of delicious coffee and pastries made with the finest ingredients."
               imageUrl="/assets/images/card-product/Image-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Non-Coffee"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Non-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Food"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Nasi-Goreng-2.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
@@ -196,42 +198,42 @@ export function ProductCustomerLayout() {
         </div>
         <section className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-8 pb-16 px-10 ">
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Coffee"
               description="Explore our wide range of delicious coffee and pastries made with the finest ingredients."
               imageUrl="/assets/images/card-product/Image-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Non-Coffee"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Non-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Food"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Nasi-Goreng-2.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
@@ -261,42 +263,42 @@ export function ProductCustomerLayout() {
         </div>
         <section className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-8 pb-16 px-10 ">
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Coffee"
               description="Explore our wide range of delicious coffee and pastries made with the finest ingredients."
               imageUrl="/assets/images/card-product/Image-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Non-Coffee"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Non-Coffee.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Food"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Nasi-Goreng-2.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
             />
           </div>
           <div data-aos="zoom-in-up" data-aos-duration="1000">
-            <ProductCard
+            <ProductCardCustomer
               title="Snack"
               description="Learn about our story, our team, and our commitment to providing the best cafe experience."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
