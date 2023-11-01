@@ -34,10 +34,10 @@ export default function PaymentModal() {
             </Group>
           </Grid.Col>
           <Grid.Col>
-            <Input required placeholder="Masukan Nama Customer"></Input>
+            <Input required={true} placeholder="Masukan Nama Customer"></Input>
           </Grid.Col>
           <Grid.Col>
-            <Input required placeholder="Masukan Uang Customer"></Input>
+            <Input required={true} placeholder="Masukan Uang Customer"></Input>
           </Grid.Col>
           <Grid.Col>
             <Group sx={{ display: 'flex', justifyContent: 'space-between' }}>

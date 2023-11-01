@@ -5,7 +5,6 @@ import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { breadCrumbs } from '@/types/common'
 import HeaderAddEdit from '@/core/components/header/HeaderAddEdit'
-import { PaymentsTable } from '@/pages/transaction-management/manage-transaction/add-form'
 import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
 import { createPayment } from '@/features/transaction-management/payment/payment.api'
 import { dummyPaymentsTable } from '@/mock-data/table'
@@ -18,7 +17,7 @@ const breadCrumbs: breadCrumbs[] = [
   {
     title: 'Tabel Transaksi',
     value: 'table_transaction',
-    href: '/transaction-management/manage-transaction',
+    href: '/transaction-management/transaction',
   },
   {
     title: `Tambah Produk`,

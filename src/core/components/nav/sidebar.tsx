@@ -84,11 +84,11 @@ const linkData: LinksGroupProps[] = [
       // { label: 'Add Student', link: '/user/mahasiswa/add' },
       {
         label: 'Add Transaction',
-        link: '/transaction-management/manage-transaction/add',
+        link: '/transaction-management/transaction/add',
       },
       {
         label: 'Manage Transactions',
-        link: '/transaction-management/manage-transaction',
+        link: '/transaction-management/transaction',
       },
       // { label: 'Manage Student Card', link: '/academic/student/card' },
     ],
