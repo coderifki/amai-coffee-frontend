@@ -1,16 +1,15 @@
-import React from 'react'
 import AdminLayout from '@/core/AdminLayout'
-import ProductForm from '@/pages/product-management/product/add-form'
-import { toast } from 'react-hot-toast'
-import { useRouter } from 'next/router'
-import { breadCrumbs } from '@/types/common'
-import HeaderAddEdit from '@/core/components/header/HeaderAddEdit'
-import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
-import { createPayment } from '@/features/transaction-management/payment/payment.api'
-import { dummyPaymentsTable } from '@/mock-data/table'
+import PaymentCard, { ICartItem } from '@/core/components/cards/PaymentCard'
 import ProductCard from '@/core/components/cards/ProductCard'
+import { getAllProductPagination } from '@/features/product-management/product/prodcut.api'
+import { createPayment } from '@/features/transaction-management/payment/payment.api'
+import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
+import { breadCrumbs } from '@/types/common'
 import { Grid } from '@mantine/core'
-import PaymentCard from '@/core/components/cards/PaymentCard'
+import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 const breadCrumbs: breadCrumbs[] = [
   { title: 'Dashboard', value: 'dashboard', href: '/dashboard' },
@@ -27,8 +26,86 @@ const breadCrumbs: breadCrumbs[] = [
 ]
 
 export default function AddTransactionPage() {
+  const [chart, setChart] = useState<ICartItem[]>([])
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(5)
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
+
+  // Function to increase quantity for an item in the cart
+  const increaseQuantity = (id: string) => {
+    setChart(
+      chart.map((cartItem) =>
+        cartItem.id === id
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      )
+    )
+  }
+
+  // Function to decrease quantity for an item in the cart
+  const decreaseQuantity = (id: string) => {
+    const existingItem = chart.find((cartItem) => cartItem.id === id)
+    if (existingItem && existingItem.quantity > 1) {
+      setChart(
+        chart.map((cartItem) =>
+          cartItem.id === id
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+      )
+    } else {
+      setChart(chart.filter((cartItem) => cartItem.id !== id))
+    }
+  }
+
+  // Function to remove items from the cart
+  const removeItem = (id: string) => {
+    setChart(chart.filter((cartItem) => cartItem.id !== id))
+  }
+
+  // Function to add items to the cart
+  const addCart = (item: ICartItem) => {
+    const existingItem = chart.find((cartItem) => cartItem.id === item.id)
+    if (existingItem) {
+      setChart(
+        chart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        )
+      )
+    } else {
+      setChart([...chart, { ...item, quantity: 1 }])
+    }
+  }
+
+  // Function to subtract items from the cart
+  const substractCart = (item: ICartItem) => {
+    const existingItem = chart.find((cartItem) => cartItem.id === item.id)
+    if (existingItem && existingItem.quantity > 1) {
+      setChart(
+        chart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+      )
+    } else {
+      setChart(chart.filter((cartItem) => cartItem.id !== item.id))
+    }
+  }
+
+  const {
+    data,
+    isLoading: isLoadingProduct,
+    error,
+  } = useQuery({
+    queryKey: [getAllProductPagination.name, { page, limit }],
+    queryFn: () => getAllProductPagination({ page, limit }, false),
+    refetchOnMount: true,
+    keepPreviousData: false,
+  })
 
   const handleSubmitForm = async (data: PaymentMethodEntity) => {
     setIsLoading(true)
@@ -49,39 +126,43 @@ export default function AddTransactionPage() {
 
   return (
     <AdminLayout>
-      <Grid grow>
-        <Grid.Col md={8} xs={12}>
-          <Grid>
-            <Grid.Col md={4}>
-              <ProductCard
-                image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                desctiptions="Nasi Goreng Enak"
-                price={12}
-                title="Nasi Goreng"
-              />
-            </Grid.Col>
-            <Grid.Col md={4}>
-              <ProductCard
-                image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                desctiptions="Nasi Goreng Enak"
-                price={12}
-                title="Nasi Goreng"
-              />
-            </Grid.Col>
-            <Grid.Col md={4}>
-              <ProductCard
-                image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                desctiptions="Nasi Goreng Enak"
-                price={12}
-                title="Nasi Goreng"
-              />
-            </Grid.Col>
-          </Grid>
-        </Grid.Col>
-        <Grid.Col md={4} xs={12}>
-          <PaymentCard />
-        </Grid.Col>
-      </Grid>
+      {isLoadingProduct ? (
+        <p>Product is loading...</p>
+      ) : (
+        <Grid grow>
+          <Grid.Col md={8} xs={12}>
+            <Grid>
+              {data?.data?.map((item) => (
+                <Grid.Col md={4} key={item.id}>
+                  <ProductCard
+                    image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80"
+                    description="Deskripsi Produk Tidak Ditemukan"
+                    id={item?.id || ''}
+                    price={item?.price || 0}
+                    title={item?.name || 'Nama Produk Tidak Ditemukan'}
+                    onClick={(item) =>
+                      addCart({
+                        ...item,
+                        id: item.id,
+                        name: item.title,
+                        quantity: 1,
+                      })
+                    }
+                  />
+                </Grid.Col>
+              ))}
+            </Grid>
+          </Grid.Col>
+          <Grid.Col md={4} xs={12}>
+            <PaymentCard
+              carts={chart}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+              removeItem={removeItem}
+            />
+          </Grid.Col>
+        </Grid>
+      )}
 
       {/* <HeaderAddEdit
         breadcrumbs={breadCrumbs}

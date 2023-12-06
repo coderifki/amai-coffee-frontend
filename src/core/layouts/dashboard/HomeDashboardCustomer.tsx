@@ -45,16 +45,9 @@ export function HomeDashboardCustomer() {
             <div className="absolute w-16 h-2 ms-12 my-5 bg-red-300 "></div>
           </div>
         </div>
-        <div className="text-[#A75D5D] font-semibold text-center px-16 mt-10 sm:text-xl">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of typed
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+        <div className="text-[#A75D5D] font-semibold text-center px-16 mt-10 sm:text-xl md:text-2xl">
+          Welcome to Melina Coffee, Where Aroma Waves and Perfect Flavors Await
+          You.
         </div>
       </div>
       <div
@@ -68,7 +61,7 @@ export function HomeDashboardCustomer() {
           <div data-aos="fade-up" data-aos-duration="1000">
             <CardHomeCustomer
               title="Coffee"
-              description="Explore our wide range of delicious coffee and pastries made with the finest ingredients."
+              description="Indulge in our curated selection of coffees, each blend a testament to quality and flavor, promising a delightful journey with every sip. "
               imageUrl="/assets/images/card-product/Image-Coffee.jpg"
               linkText="View Menu"
               linkUrl="/product-customer"
@@ -77,7 +70,7 @@ export function HomeDashboardCustomer() {
           <div data-aos="fade-up" data-aos-duration="1000">
             <CardHomeCustomer
               title="Non-Coffee"
-              description="Learn about our story, our team, and our commitment to providing the best cafe experience."
+              description="Discover our delightful selection of beverages beyond coffee, crafted with care using premium ingredients, from refreshing teas to flavorful smoothies."
               imageUrl="/assets/images/card-product/Non-Coffee.jpg"
               linkText="View Menu"
               linkUrl="/product-customer"
@@ -86,7 +79,7 @@ export function HomeDashboardCustomer() {
           <div data-aos="fade-up" data-aos-duration="1000">
             <CardHomeCustomer
               title="Food"
-              description="Learn about our story, our team, and our commitment to providing the best cafe experience."
+              description="Experience a delectable array of savory dishes meticulously prepared to tantalize your taste buds, from classic favorites to chef-inspired creations."
               imageUrl="/assets/images/card-product/Nasi-Goreng-2.jpg"
               linkText="View Menu"
               linkUrl="/product-customer"
@@ -95,7 +88,7 @@ export function HomeDashboardCustomer() {
           <div data-aos="fade-up" data-aos-duration="1000">
             <CardHomeCustomer
               title="Snack"
-              description="Learn about our story, our team, and our commitment to providing the best cafe experience."
+              description="Indulge in our tempting selection of snacks, perfect for those in-between cravings. From crispy bites to savory treats, there's something for every snack enthusiast."
               imageUrl="/assets/images/card-product/Kentang-Goreng.jpg"
               linkText="View Menu"
               linkUrl="/product-customer"

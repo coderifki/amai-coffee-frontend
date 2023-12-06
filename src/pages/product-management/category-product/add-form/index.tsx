@@ -2,6 +2,7 @@ import SelectField from '@/core/form-fields/select-field'
 import TextField from '@/core/form-fields/text-field'
 import { UserEntity } from '@/features/auth/user/user.model'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
+import { SubmitCreateCategoryProduct } from '@/pages/product-management/category-product/add-form/add-form-model'
 import { SubmitCreateProduct } from '@/pages/product-management/product/add-form/add-form-model'
 import { removeEmptyKey } from '@/utils/remove-empty-key'
 import { Button, Flex, Grid, Space, Text, createStyles } from '@mantine/core'
@@ -26,7 +27,7 @@ export default function CategoryProductForm({
   onFormSubmit,
   defaultValues,
   isLoading,
-}: SubmitCreateProduct) {
+}: SubmitCreateCategoryProduct) {
   const { classes } = useStyles()
   const form = useForm({
     initialValues: {
@@ -35,7 +36,7 @@ export default function CategoryProductForm({
     },
     validate: {
       // informasi umum
-      name: (value) => (value ? null : 'Nama Product harus diisi'),
+      name: (value) => (value ? null : 'Nama Cetegory Product harus diisi'),
     },
   })
   const handleSubmit = (data: CategoryProductEntity) => {

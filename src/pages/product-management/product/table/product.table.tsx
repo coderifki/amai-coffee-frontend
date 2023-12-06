@@ -53,6 +53,11 @@ export const ProductTableComponent = ({
         accessorKey: 'cat_product_id',
         header: 'Categori ID',
       },
+      // {
+      //   accessorKey: 'cat_product_name',
+      //   header: 'Category Nama',
+      // },
+
       {
         id: 'actions',
         accessorKey: 'id',

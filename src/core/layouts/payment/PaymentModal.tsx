@@ -23,7 +23,7 @@ export default function PaymentModal() {
       <Modal
         opened={opened}
         onClose={close}
-        transitionProps={{ transition: 'fade', duration: 200 }}
+        transitionProps={{ transition: 'fade', duration: 500 }}
       >
         {/* Modal content */}
         <Grid>

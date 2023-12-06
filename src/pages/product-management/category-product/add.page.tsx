@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { breadCrumbs } from '@/types/common'
 import HeaderAddEdit from '@/core/components/header/HeaderAddEdit'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
-import { createCatProduct } from '@/features/product-management/category-product/category-prodcut.api'
+import { createCatProduct } from '@/features/product-management/category-product/category-product.api'
 import CategoryProductForm from '@/pages/product-management/category-product/add-form'
 
 const breadCrumbs: breadCrumbs[] = [
@@ -58,7 +58,4 @@ export default function AddCatProductPage() {
       />
     </AdminLayout>
   )
-}
-function createCategoryProduct(data: CategoryProductEntity) {
-  throw new Error('Function not implemented.')
 }

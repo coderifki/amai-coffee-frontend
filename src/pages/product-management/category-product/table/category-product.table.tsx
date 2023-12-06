@@ -10,14 +10,18 @@ import {
   Loader,
   Pagination,
   Table as MantineTable,
+  Modal,
 } from '@mantine/core'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { formatNumberIndoCurrency } from '@/utils/formatNumberIndoCurrency'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
+import DeleteCategoryModal from '@/core/components/modal/product-management/delete-confimration-modal'
+import { deleteCatProduct } from '@/features/product-management/category-product/category-product.api'
+import ShowCategoryProductModal from '@/core/components/modal/product-management/category-product/show-detail-modal'
 
-interface CourseTableProps {
+interface CatProductTableProps {
   isLoading: boolean
   data: CategoryProductEntity[]
   pageCount: number
@@ -33,7 +37,48 @@ export const CategoryProductTableComponent = ({
   pageSize,
   currentPage,
   onCurrentPageChange,
-}: CourseTableProps) => {
+}: CatProductTableProps) => {
+  const [showDetailModal, setShowDetailModal] = useState(false)
+  const [selectedEntity, setSelectedEntity] =
+    useState<CategoryProductEntity | null>(null)
+
+  const handleShowDetail = (id: string) => {
+    const entityToShow = data.find((item) => item.id === id)
+    setSelectedEntity(entityToShow || null)
+    setShowDetailModal(true) // Menggunakan setShowDetailModal untuk membuka modal
+  }
+
+  const [showModal, setShowModal] = useState(false)
+  const [entityToDelete, setEntityToDelete] =
+    useState<CategoryProductEntity | null>(null)
+
+  const handleDeleteClick = (id: string) => {
+    const entity = data.find((item) => item.id === id)
+    setEntityToDelete(entity || null)
+    setShowModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
+
+  const confirmDelete = async () => {
+    if (entityToDelete) {
+      try {
+        await deleteCatProduct(entityToDelete.id)
+
+        // Setelah penghapusan berhasil, tambahkan logika untuk memperbarui data
+        // Misalnya, lakukan fetch ulang data atau manipulasi state yang menyimpan data kategori produk.
+        // Contoh: const updatedData = await fetchData(); setCategoryProducts(updatedData);
+
+        setShowModal(false)
+      } catch (error) {
+        console.error('Error deleting entity:', error)
+        // Tampilkan pesan atau notifikasi kesalahan kepada pengguna
+      }
+    }
+  }
+
   const columns = React.useMemo<ColumnDef<CategoryProductEntity>[]>(
     () => [
       {
@@ -61,19 +106,40 @@ export const CategoryProductTableComponent = ({
         cell: ({ getValue }) => {
           return (
             <Group spacing="xs" noWrap>
-              <Link href={`/Courses/detail/${getValue()}`}>
-                <Button variant="outline" size="sm" color="blue">
-                  Show
-                </Button>
-              </Link>
-              <Link href={`/academic/master-data/course/${getValue()}/edit`}>
+              <Button
+                variant="outline"
+                size="sm"
+                color="blue"
+                onClick={() => handleShowDetail(String(getValue()))} // Di sini panggil fungsi handleShowDetail
+              >
+                Show
+              </Button>
+              <ShowCategoryProductModal
+                isOpen={showDetailModal}
+                categoryProduct={selectedEntity}
+                onClose={() => setShowDetailModal(false)} // Menutup modal dengan setShowDetailModal
+              />
+              <Link
+                href={`/product-management/category-product/${getValue()}/edit`}
+              >
                 <Button variant="outline" size="sm" color="yellow">
                   Edit
                 </Button>
               </Link>
-              <Button variant="outline" size="sm" color="red">
+              <Button
+                variant="outline"
+                size="sm"
+                color="red"
+                onClick={() => handleDeleteClick(String(getValue()))} // Ubah di sini agar onClick memanggil fungsi handleDeleteClick dengan ID yang sesuai
+              >
                 Delete
               </Button>
+              <DeleteCategoryModal
+                isOpen={showModal} // Gunakan showModal di sini untuk mengontrol keberadaan modal
+                onClose={handleCloseModal}
+                id={entityToDelete?.id || ''}
+                onDelete={confirmDelete} // Ubah menjadi confirmDelete agar ketika modal dikonfirmasi, fungsi penghapusan dipanggil
+              />
             </Group>
           )
         },
@@ -188,6 +254,38 @@ export const CategoryProductTableComponent = ({
 
             // onChange={setCurrent}
           />
+          {/* Modal konfirmasi penghapusan */}
+          {showModal && entityToDelete && (
+            <Modal
+              title="Konfirmasi Penghapusan"
+              onClose={() => setShowModal(false)}
+              size="sm"
+              opened
+            >
+              <div>Anda yakin ingin menghapus {entityToDelete.name}?</div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  marginTop: '16px',
+                }}
+              >
+                <Button
+                  variant="outline"
+                  color="red"
+                  onClick={() => confirmDelete()}
+                >
+                  Hapus
+                </Button>
+                <Button
+                  style={{ marginLeft: '8px' }}
+                  onClick={() => setShowModal(false)}
+                >
+                  Batal
+                </Button>
+              </div>
+            </Modal>
+          )}
         </div>
       )}
     </div>

@@ -21,8 +21,8 @@ class ApiClient {
     this.axiosInstance = wrapper(
       axios.create({
         baseURL: process.env.NEXT_PUBLIC_API_URL,
-        jar,
-        withCredentials: true,
+        // jar,
+        withCredentials: false,
       })
     )
     this.axiosInstance.interceptors.request.use(this.interceptRequest)
@@ -77,9 +77,9 @@ class ApiClient {
     console.trace('error', axios.isAxiosError(error))
     if (axios.isAxiosError(error)) {
       // const getUserCookie = getCookie('user')
-      if (error.response?.status === 401) {
-        deleteCookie('user')
-      }
+      // if (error.response?.status === 401) {
+      //   deleteCookie('user')
+      // }
     }
     return Promise.reject(error)
   }
@@ -111,8 +111,9 @@ class ApiClient {
   }
 
   private interceptRequest = (config: IApiClientConfig) => {
-    if (config.accessToken) {
-      config.headers.Authorization = `Bearer ${config.accessToken}`
+    const accessToken = localStorage.getItem('access_token')
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`
     }
 
     return config

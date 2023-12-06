@@ -1,12 +1,9 @@
-import SelectField from '@/core/form-fields/select-field'
 import TextField from '@/core/form-fields/text-field'
-import { UserEntity } from '@/features/auth/user/user.model'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import { SubmitCreateProduct } from '@/pages/product-management/product/add-form/add-form-model'
 import { removeEmptyKey } from '@/utils/remove-empty-key'
 import { Button, Flex, Grid, Space, Text, createStyles } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { getCookie } from 'cookies-next'
 import React from 'react'
 
 const useStyles = createStyles(() => ({

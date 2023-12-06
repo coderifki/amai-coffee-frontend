@@ -1,7 +1,7 @@
-export interface CategoryProductEntity {
-  id?: string
-  name?: string
+// import { ProductEntity } from '@/features/product-management/product/product.model'
 
-  // category?: CategoryEntity
-  // category?: anyw
+export interface CategoryProductEntity {
+  id: string
+  name?: string
+  // Products?: ProductEntity[]
 }

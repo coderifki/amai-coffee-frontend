@@ -1,5 +1,5 @@
 import AdminLayout from '@/core/AdminLayout'
-import { getAllCategoryProductPagination } from '@/features/product-management/category-product/category-prodcut.api'
+import { getAllCategoryProductPagination } from '@/features/product-management/category-product/category-product.api'
 import { CourseTableComponent } from '@/pages/academic/master-data/course/table/course.table'
 import { CategoryProductTableComponent } from '@/pages/product-management/category-product/table/category-product.table'
 import { ProductTableComponent } from '@/pages/product-management/product/table/product.table'

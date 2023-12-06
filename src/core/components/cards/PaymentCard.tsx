@@ -1,30 +1,36 @@
 import PaymentModal from '@/core/layouts/payment/PaymentModal'
 import {
   Card,
-  Image,
-  Text,
-  Badge,
-  Button,
-  Group,
-  Grid,
   Divider,
+  Group,
+  Image,
   NumberInput,
-  ActionIcon,
-  Stack,
-  Space,
+  Text,
+  TextInput,
 } from '@mantine/core'
-import Link from 'next/link'
-import { FaCircleXmark } from 'react-icons/fa6'
+import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
+import { IoIosCloseCircle } from 'react-icons/io'
 
-type Props = {
-  title: string
+export interface ICartItem {
+  id: string
+  name: string
+  quantity: number
   price: number
-  desctiptions: string
-  image: string
-  discont?: number
 }
 
-export default function PaymentCard() {
+type Props = {
+  carts: ICartItem[]
+  increaseQuantity: (id: string) => void
+  decreaseQuantity: (id: string) => void
+  removeItem: (id: string) => void
+}
+
+export default function PaymentCard({
+  carts,
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+}: Props) {
   return (
     <>
       <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -32,50 +38,77 @@ export default function PaymentCard() {
           <Text fw={500}>Payment</Text>
         </Group>
         <Divider size="md" label="Order Menu" labelPosition="center" />
-        <Group mt="md" mb="xs">
-          <Image
-            src="/assets/images/card-product/Nasi-Goreng.jpg"
-            // height={50}
-            width={80}
-            fit="contain"
-            alt="Norway"
-          />
-          <Group
-            display={'flex'}
-            sx={{ flexDirection: 'column', maxHeight: 100, minWidth: 100 }}
-          >
-            <Text fz="sm">Nasi Goreng</Text>
-            {/* <Space h="xs" /> */}
 
-            <NumberInput
-              defaultValue={1}
-              min={1}
-              max={100}
-              size="xs"
-              maw={80}
-              radius="lg"
+        {/* Display if carts exist */}
+        {carts.length > 0 && (
+          <>
+            {/* Loop through the carts */}
+            {carts.map((item, index) => (
+              <div key={index}>
+                <Group mt="md" mb="xs">
+                  <Image
+                    src="/assets/images/card-product/Nasi-Goreng.jpg"
+                    width={80}
+                    fit="contain"
+                    alt="Norway"
+                  />
+                  <Group
+                    display="flex"
+                    sx={{
+                      flexDirection: 'column',
+                      maxHeight: 100,
+                      minWidth: 100,
+                    }}
+                  >
+                    <Text fz="sm">{item?.name || 'tidak ada namanya'}</Text>
+                    <Group align="center">
+                      <FaMinusCircle
+                        onClick={() => decreaseQuantity(item.id)}
+                      />
+                      <TextInput
+                        value={item.quantity}
+                        onChange={() => {}}
+                        min={1}
+                        max={100}
+                        size="xs"
+                        maw={80}
+                        radius="lg"
+                      />
+                      <FaPlusCircle onClick={() => increaseQuantity(item.id)} />
+                    </Group>
+                  </Group>
+                  <Group
+                    sx={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <Text fz="sm">Rp. {item.quantity * item.price}</Text>
+                    <IoIosCloseCircle onClick={() => removeItem(item.id)} />
+                  </Group>
+                </Group>
+              </div>
+            ))}
+
+            <Divider
+              mt="md"
+              mb="md"
+              size="md"
+              label="Total Amount"
+              labelPosition="center"
             />
-          </Group>
-          <Group sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Text fz="sm">Rp. 12.000</Text>
-            <ActionIcon variant="subtle">
-              <FaCircleXmark size="1rem" />
-            </ActionIcon>
-          </Group>
-        </Group>
-        <Divider
-          mt={'md'}
-          mb={'md'}
-          size="md"
-          label="Total Amount"
-          labelPosition="center"
-        />
-        <Group sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Text fz="sm">Total</Text>
-
-          <Text fz="sm">Rp. 12.000</Text>
-        </Group>
-        <PaymentModal />
+            <Group sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Text fz="sm">Total</Text>
+              {/* Calculate the total amount */}
+              <Text fz="sm">
+                Rp.{' '}
+                {carts.reduce(
+                  (acc, item) => acc + item.price * item.quantity,
+                  0
+                )}
+              </Text>
+            </Group>
+            <PaymentModal />
+          </>
+        )}
+        {/* Add Checkout Button */}
         {/* <Button variant="light" color="blue" fullWidth mt="md" radius="md">
           Checkout
         </Button> */}

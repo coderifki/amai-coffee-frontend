@@ -40,7 +40,7 @@ export default function Hero() {
               </Link>
               <Link href="/about-customer">
                 <button className=" btn  hover:shadow-[0_4px_0px_rgb(0,0,0)]  hover:translate-y-1   gap-y-8 items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-[#A75D5D] shadow-sm hover:bg-orange-100 sm:px-6 transition duration-300 ease-in-out">
-                  See Our Dily Specials
+                  See Our Daily Specials
                 </button>
               </Link>
             </div>

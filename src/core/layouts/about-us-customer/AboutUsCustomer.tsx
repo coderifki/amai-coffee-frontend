@@ -31,15 +31,17 @@ export function AboutUsCustomer() {
           <TextLogo title="About Us" />
         </div>
         <div className="text-[#A75D5D] font-semibold text-center px-16 mb-10 sm:text-xl">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Melina Coffee is more than just a coffee shop, it's a culmination of
+          passion, dedication, and a love for extraordinary coffee experiences.
+          Our journey began with a vision to create a space where every cup
+          tells a story.
+          <br />
+          <br />
+          At Melina, we source the finest beans, handcraft each brew, and curate
+          an atmosphere where coffee enthusiasts and casual sippers alike find
+          solace. Our commitment extends beyond serving exceptional coffee, it's
+          about fostering connections and creating moments that linger in
+          memory.
         </div>
       </div>
 
@@ -55,15 +57,18 @@ export function AboutUsCustomer() {
           Our Story
         </div>
         <div className="text-gray-600 font-semibold text-left px-16 mb-10 text-sm">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Melina Coffee's journey began with three passionate individuals driven
+          by a singular vision: to create a haven where coffee enthusiasts like
+          you could connect, converse, and craft stories over a perfect cup of
+          coffee. The essence of our venture lies in fostering a community,
+          transcending the ordinary, and embracing the art of conversation.
+          <br />
+          <br />
+          From the moment you step into our space, you become part of this
+          narrative. Each sip is a chapter, and every visit is an opportunity to
+          add to the anthology of shared experiences. We are more than a coffee
+          shop, we are a gathering place, a hub where the aroma of freshly
+          brewed coffee intertwines with the tales spun by our patrons.
         </div>
 
         <section className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-8 pb-16 px-10 ">

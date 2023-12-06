@@ -6,7 +6,7 @@ import 'aos/dist/aos.css'
 interface ProductCardCustomerProps {
   title: string
   description: string
-  // price: number
+  // price: string
   imageUrl: string
   // linkText: string
   // linkUrl: string
@@ -26,17 +26,17 @@ const ProductCardCustomer: React.FC<ProductCardCustomerProps> = ({
   }, []) // Only run this effect once when the component mounts
   return (
     <>
-      <div className="flex p-8 bg-white">
+      <div className="flex p-8 min-h-full bg-white">
         <img
           src={imageUrl}
           alt={title}
-          className="w-2/5 mr-4 object-cover object-left max-h-32"
+          className="w-2/5 mr-4 object-cover items-center justify-center object-left max-h-32"
         />
         <div className="w-1/2">
-          <h2 className="text-2xl font-semibold text-[#A75D5D] mb-4">
+          <h2 className="text-2xl hyphens-auto font-semibold text-[#A75D5D] mb-4">
             {title}
           </h2>
-          <div className="text-gray-600 mb-4">{description}</div>
+          <div className="text-gray-600 ">{description}</div>
           {/* <Link href={linkUrl} passHref>
             <div className="text-red-300">{linkText}</div>
           </Link> */}

@@ -42,8 +42,8 @@ export function ContactUsCustomer() {
           <img
             data-aos="fade-right"
             data-aos-duration="1000"
-            src="/assets/images/contact-us/VintageIki.jpg"
-            className="min-h-full md:min-h-full w-full  shadow-xl object-cover object-left max-h-96"
+            src="/assets/images/contact-us/kedai_melina_coffee.jpg"
+            className="min-h-full md:min-h-full w-full rounded-sm shadow-xl object-cover object-left max-h-96"
           />
           <div className="md:justify-start font-semibold text-[#A75D5D] px-4 text-sm ">
             <div

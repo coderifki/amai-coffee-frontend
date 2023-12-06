@@ -51,6 +51,7 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
       setCookie('user', isLogin.data.data.jwt_token, {
         maxAge: 60 * 60 * 24 * 7,
       })
+      localStorage.setItem('access_token', isLogin.data.data.jwt_token)
       toast.success('Login success', {
         position: 'bottom-center',
       })
@@ -69,6 +70,7 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
     console.trace('logOut')
     deleteCookie('user')
     deleteCookie('token')
+    localStorage.removeItem('access_token')
     setCustomLoading(false)
     router.push('/')
   }

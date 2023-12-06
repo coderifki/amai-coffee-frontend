@@ -30,7 +30,7 @@ const CardHomeCustomer: React.FC<CardHomeCustomerProps> = ({
     <div
       data-aos=""
       data-aos-duration=""
-      className="p-8 rounded-md bg-white shadow-md"
+      className="p-8 rounded-md min-h-full bg-white shadow-md"
     >
       <img src={imageUrl} alt={title} className="mb-4" />
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
