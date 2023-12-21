@@ -183,7 +183,7 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
                 />
                 <PasswordInput
                   placeholder="Password"
-                  radius="md"
+                  radius="sm"
                   size="lg"
                   sx={{
                     width: '30em',

@@ -28,16 +28,16 @@ export default function HomeDashboard() {
           </Box>
         </Grid.Col>
         <Grid.Col xs={12} md={4}>
-          <Box className={classes.box}>
+          {/* <Box className={classes.box}>
             <SearchingField />
-          </Box>
-          <Box className={classes.box}>
+          </Box> */}
+          {/* <Box className={classes.box}>
             <SelectStudentActivity />
-          </Box>
+          </Box> */}
           <Box className={classes.box}>
             <DashboardCalender />
           </Box>
-          <Box className={classes.box}>
+          {/* <Box className={classes.box}>
             <PaperForAplicationDashboard />
           </Box>
           <Box className={classes.box}>
@@ -45,7 +45,7 @@ export default function HomeDashboard() {
           </Box>
           <Box className={classes.box}>
             <ComingSoonActifityDashboard />
-          </Box>
+          </Box> */}
         </Grid.Col>
       </Grid>
     </>

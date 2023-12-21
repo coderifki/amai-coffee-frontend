@@ -1,7 +1,8 @@
 import InputField from '@/core/form-fields/input-field'
 import SelectField from '@/core/form-fields/select-field'
 import TextField from '@/core/form-fields/text-field'
-import { UserEntity } from '@/features/auth/user/user.model'
+import { getAllCategoryProductPagination } from '@/features/product-management/category-product/category-product.api'
+import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import { ProductEntity } from '@/features/product-management/product/product.model'
 import { SubmitCreateProduct } from '@/pages/product-management/product/add-form/add-form-model'
 import { removeEmptyKey } from '@/utils/remove-empty-key'
@@ -16,8 +17,7 @@ import {
   createStyles,
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { getCookie } from 'cookies-next'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUserAlt } from 'react-icons/fa'
 
 const useStyles = createStyles(() => ({
@@ -45,6 +45,27 @@ export default function ProductForm({
   isLoading,
 }: SubmitCreateProduct) {
   const { classes } = useStyles()
+  const [categories, setCategories] = useState<CategoryProductEntity[]>([])
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        // Panggil fungsi API yang telah kamu buat sebelumnya
+        const result = await getAllCategoryProductPagination({
+          page: 1,
+          limit: 10,
+        })
+        if (result && result.data) {
+          setCategories(result.data)
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
   const form = useForm({
     initialValues: {
       id: '',
@@ -106,21 +127,11 @@ export default function ProductForm({
               label="Kategori"
               placeholder="Pilih kategori produk"
               required={true}
-              data={[
-                {
-                  label: 'Makanan',
-                  value: '64cbd183ed0fdf91172ba694',
-                },
-                {
-                  label: 'Minuman',
-                  value: '64cbf7d2ed0fdf91172ba695',
-                },
-                {
-                  label: 'Snack',
-                  value: '64e31a4b00035796ad46be59',
-                },
-              ]}
-              {...form.getInputProps('cat_product_id')}
+              categories={categories}
+              value={form.values.cat_product_id || ''}
+              onChange={(value) =>
+                form.setFieldValue('cat_product_id', value || '')
+              }
             />
           </Grid.Col>
           <Grid.Col xs={12} md={6}>

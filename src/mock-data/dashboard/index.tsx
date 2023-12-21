@@ -5,17 +5,17 @@ export const choose = [
   //   link: '/auth/login',
   //   value: 'academic',
   // },
+  // {
+  //   title: 'Cashier',
+  //   image: '/assets/images/dashboard/dashboard_choose_business.png',
+  //   link: '/auth/login',
+  //   value: 'cahier',
+  // },
   {
-    title: 'Cashier',
-    image: '/assets/images/dashboard/dashboard_choose_business.png',
-    link: '/auth/login',
-    value: 'cahier',
-  },
-  {
-    title: 'Admin',
+    title: 'Login',
     image: '/assets/images/dashboard/dashboard_choose_personal.png',
     link: '/auth/login',
-    value: 'admin',
+    value: 'login',
   },
   // {
   //   title: 'Organization',

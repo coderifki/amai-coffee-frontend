@@ -16,7 +16,7 @@ const mockList: ProductEntity[] = [
     price: 100000,
     cat_product_id: 'cat1',
     // cat_product_name: 'makanan',
-    file: '',
+    images: '',
   },
 ]
 
@@ -27,7 +27,7 @@ const mockData: ProductEntity = {
   cat_product_id: 'cat1',
   // cat_product_name: 'minuman',
 
-  file: '',
+  images: '',
 }
 
 export function createProduct(props: ProductEntity) {

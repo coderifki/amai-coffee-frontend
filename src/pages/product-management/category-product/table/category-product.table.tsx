@@ -1,25 +1,23 @@
 import {
+  Button,
+  Group,
+  Loader,
+  Table as MantineTable,
+  Modal,
+  Pagination,
+} from '@mantine/core'
+import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import {
-  Button,
-  Group,
-  Loader,
-  Pagination,
-  Table as MantineTable,
-  Modal,
-} from '@mantine/core'
 
-import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { formatNumberIndoCurrency } from '@/utils/formatNumberIndoCurrency'
-import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import DeleteCategoryModal from '@/core/components/modal/product-management/delete-confimration-modal'
 import { deleteCatProduct } from '@/features/product-management/category-product/category-product.api'
-import ShowCategoryProductModal from '@/core/components/modal/product-management/category-product/show-detail-modal'
+import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
 
 interface CatProductTableProps {
   isLoading: boolean
@@ -106,7 +104,7 @@ export const CategoryProductTableComponent = ({
         cell: ({ getValue }) => {
           return (
             <Group spacing="xs" noWrap>
-              <Button
+              {/* <Button
                 variant="outline"
                 size="sm"
                 color="blue"
@@ -118,7 +116,7 @@ export const CategoryProductTableComponent = ({
                 isOpen={showDetailModal}
                 categoryProduct={selectedEntity}
                 onClose={() => setShowDetailModal(false)} // Menutup modal dengan setShowDetailModal
-              />
+              /> */}
               <Link
                 href={`/product-management/category-product/${getValue()}/edit`}
               >

@@ -51,7 +51,7 @@ export default function ScreeningDashboard() {
             {datas &&
               datas.length > 0 &&
               datas.map((data, index) => (
-                <Grid.Col key={index} className={classes.card} md={6} xs={6}>
+                <Grid.Col key={index} className={classes.card} md={12} xs={12}>
                   <ImageCard
                     title={data.title}
                     image={data.image}

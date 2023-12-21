@@ -51,7 +51,7 @@ export default function ProductCard(props: Props) {
           radius="md"
           onClick={handleAddToCart}
         >
-          Book classic tour now
+          Add Item
         </Button>
       </Card>
     </>

@@ -1,13 +1,9 @@
-import SelectField from '@/core/form-fields/select-field'
 import TextField from '@/core/form-fields/text-field'
-import { UserEntity } from '@/features/auth/user/user.model'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import { SubmitCreateCategoryProduct } from '@/pages/product-management/category-product/add-form/add-form-model'
-import { SubmitCreateProduct } from '@/pages/product-management/product/add-form/add-form-model'
 import { removeEmptyKey } from '@/utils/remove-empty-key'
 import { Button, Flex, Grid, Space, Text, createStyles } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { getCookie } from 'cookies-next'
 import React from 'react'
 
 const useStyles = createStyles(() => ({
@@ -17,6 +13,7 @@ const useStyles = createStyles(() => ({
     justifyContent: 'center',
   },
   nextButton: {
+    marginTop: '10px',
     backgroundColor: '#BCA37F !important',
     border: 'none',
     color: '#fff',
@@ -69,8 +66,8 @@ export default function CategoryProductForm({
               {...form.getInputProps('name')}
             />
           </Grid.Col>
-          <Grid.Col xs={12} md={12}>
-            {/* <SelectField
+          {/* <Grid.Col xs={12} md={12}> */}
+          {/* <SelectField
               label="Kategori"
               placeholder="Pilih kategori produk"
               required={true}
@@ -86,7 +83,7 @@ export default function CategoryProductForm({
               ]}
               {...form.getInputProps('cat_product_id')}
             /> */}
-          </Grid.Col>
+          {/* </Grid.Col> */}
           {/* <Grid.Col xs={12} md={6}>
             <TextField
               label="Harga produk"

@@ -19,18 +19,44 @@ const DeleteCategoryModal: React.FC<DeleteCategoryModalProps> = ({
   onDelete,
 }) => {
   const [loading, setLoading] = useState(false)
+  const [categoryProducts, setCategoryProducts] = useState<
+    CategoryProductEntity[]
+  >([])
+
+  // Function to fetch updated data after deletion
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/categoryproducts/find') // Replace with your actual API endpoint
+      const data = await response.json()
+      return data // Assuming your API returns an array of category products
+    } catch (error) {
+      console.error('Error fetching updated data:', error)
+      throw new Error('Failed to fetch updated data')
+    }
+  }
+
+  // Function to update data after successful deletion
+  const handleDataUpdate = async () => {
+    try {
+      const updatedData = await fetchData() // Fetch updated data
+      setCategoryProducts(updatedData) // Update state with fetched data
+    } catch (error) {
+      console.error('Failed to update data:', error)
+      // Handle error: Display an error message or notification to the user
+    }
+  }
 
   const handleDelete = async () => {
     setLoading(true)
     try {
-      await deleteCatProduct(id) // Panggil fungsi penghapusan
-      onDelete() // Panggil fungsi setelah penghapusan berhasil
+      await deleteCatProduct(id)
+      onDelete() // Trigger the onDelete function after successful deletion
+      await handleDataUpdate() // Update data after successful deletion
     } catch (error) {
-      // Tangani error jika ada
       console.error('Failed to delete category:', error)
     } finally {
       setLoading(false)
-      onClose() // Tutup modal setelah penghapusan selesai atau gagal
+      onClose() // Close the modal after deletion (whether success or failure)
     }
   }
 

@@ -11,6 +11,8 @@ import {
 import { DatePicker } from '@mantine/dates'
 import React from 'react'
 
+type DashboardCalenderProps = {}
+
 const useStyles = createStyles(() => ({
   paper: {
     // box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
@@ -31,28 +33,19 @@ const useStyles = createStyles(() => ({
   },
 }))
 
-export default function DashboardCalender() {
+export default function DashboardCalender(props: DashboardCalenderProps) {
   const { classes } = useStyles()
   const [value, setValue] = React.useState<Date | null>(null)
+  const [eventList, setEventList] = React.useState<string[]>([]) // State to hold Event
+
+  // Function to add event to the list
+  const addEvent = (event: string) => {
+    setEventList((prevList) => [...prevList, event])
+  }
   return (
     <Paper className={classes.paper}>
       <Center className={classes.containerCenter}>
-        <Box
-          sx={{
-            width: '90%',
-          }}
-        >
-          <Center>
-            <Text size="xl" weight={700}>
-              Kegiatan
-            </Text>
-          </Center>
-          <Divider
-            size="sm"
-            color={'#018B14'}
-            sx={{ margin: '13px 0 13px 0' }}
-          />
-        </Box>
+        {/* ... (existing JSX code) */}
         <DatePicker
           size="md"
           allowDeselect
@@ -65,28 +58,27 @@ export default function DashboardCalender() {
             )
           }}
           value={value}
-          onChange={setValue}
-        />
-        <Box
-          sx={{
-            width: '90%',
+          onChange={(newValue) => {
+            setValue(newValue)
+            const newEvent = prompt('Enter kegiatan for this date')
+            if (newEvent) {
+              addEvent(newEvent)
+            }
           }}
-        >
-          <Divider
-            size="sm"
-            color={'#018B14'}
-            sx={{ margin: '13px 0 13px 0' }}
-          />
-          <Center>
-            <Button
-              className={classes.cardButtonCalender}
-              variant="filled"
-              radius="md"
-            >
-              {/* Book classic tour now */}1 Kegiatan
-            </Button>
-          </Center>
-        </Box>
+        />
+        {/* ... (existing JSX code) */}
+        {/* Displaying saved kegiatan */}
+        {eventList.length > 0 && (
+          <Box
+            sx={{
+              width: '90%',
+            }}
+          >
+            {eventList.map((event, index) => (
+              <Text key={index}>{event}</Text>
+            ))}
+          </Box>
+        )}
       </Center>
     </Paper>
   )

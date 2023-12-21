@@ -17,7 +17,7 @@ export default function SideCardLogin() {
         alt="Random unsplash image"
         sx={{ position: 'absolute', zIndex: -1, filter: 'blur(2px)' }}
       />
-      <Box
+      {/* <Box
         sx={{
           backgroundColor: '#2E3261',
           width: '100px',
@@ -26,7 +26,7 @@ export default function SideCardLogin() {
           marginLeft: 50,
           zIndex: 1,
         }}
-      />
+      /> */}
       {/* <Image
         src="/assets/images/login/indonesia_map.png"
         alt="Random unsplash image"

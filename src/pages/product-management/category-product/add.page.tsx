@@ -34,7 +34,7 @@ export default function AddCatProductPage() {
         toast.success(`Kategori Produk ${data.name} berhasil dibuat`, {
           position: 'bottom-center',
         })
-        console.log(res)
+        // console.log(res)
         router.push('/product-management/category-product')
       }
     } catch (error: any) {

@@ -53,8 +53,8 @@ export function AboutUsCustomer() {
         className=" container mx-auto"
       >
         <div className="flex md:justify-start sm:justify-center mb-8 text-[#A75D5D] font-semibold pt-10 px-16 lg:text-md text-xl sm:text-xl md:text-base">
-          <div className="absolute w-16 h-1 bg-red-300 mt-8"></div>
           Our Story
+          <div className="absolute w-16 h-1 bg-red-300 mt-8"></div>
         </div>
         <div className="text-gray-600 font-semibold text-left px-16 mb-10 text-sm">
           Melina Coffee's journey began with three passionate individuals driven
@@ -75,7 +75,7 @@ export function AboutUsCustomer() {
           <img
             data-aos="fade-right"
             data-aos-duration="1000"
-            src="/assets/images/card-product/Non-Coffee.jpg"
+            src="/assets/images/about-us/closeup-barista.jpg"
             className=" sm:min-h-full md:min-h-full w-full  shadow-xl object-cover object-left max-h-96"
           />
           <div className="md:justify-start font-semibold text-[#A75D5D] px-4 text-sm ">

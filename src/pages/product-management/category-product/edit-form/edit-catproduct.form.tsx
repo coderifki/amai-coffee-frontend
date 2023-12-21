@@ -1,15 +1,31 @@
-import { Button, Card, Grid, Text, createStyles } from '@mantine/core'
+import { Button, Card, Flex, Grid, Text, createStyles } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useEffect, useMemo } from 'react'
 
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import TextField from '@/core/form-fields/text-field'
+import HeaderAddEdit from '@/core/components/header/HeaderAddEdit'
+import { breadCrumbs } from '@/types/common'
 
 export class CategoryProductFormProps {
   submitState: boolean
   defaultValues: CategoryProductEntity | null
   onFormSubmit: (values: CategoryProductEntity) => void
 }
+
+const breadCrumbs: breadCrumbs[] = [
+  { title: 'Dashboard', value: 'dashboard', href: '/dashboard' },
+  {
+    title: 'Tabel Kategori Produk',
+    value: 'table_category_product',
+    href: '/product-management/category-product',
+  },
+  {
+    title: `Edit Kategori Produk`,
+    value: `add`,
+    href: '#',
+  },
+]
 
 const useStyles = createStyles(() => ({
   gridContainer: {
@@ -19,7 +35,7 @@ const useStyles = createStyles(() => ({
   },
   submitButton: {
     marginTop: '10px',
-    backgroundColor: '#018B14 !important',
+    backgroundColor: '#BCA37F !important',
     border: 'none',
     color: '#fff',
   },
@@ -77,84 +93,61 @@ export const CategoryProductFormEdit = ({
   if (!initialValues) return null
 
   return (
-    <Card p={'xl'} mih={600}>
-      <Card.Section p={'md'}>
-        {/* for form */}
-        <form
-          onSubmit={form.onSubmit((values: CategoryProductEntity) => {
-            onFormSubmit({
-              ...values,
-              id: initialValues?.id || '',
-              // name: initialValues?.name || '',
-            })
-          })}
-        >
-          <Grid>
-            {/* Mulai section data mahasiswa */}
-            <Grid.Col xs={12} md={12}>
-              <Text fw={700} color={'#112D3C'} size={'md'}>
-                Edit Kategori Produk{' '}
-              </Text>
-            </Grid.Col>
-            <Grid.Col xs={12} md={6}>
-              <TextField
-                label="Nama Kategori Produk"
-                placeholder="Makanan, Minuman, Snack.."
-                required={true}
-                {...form.getInputProps('name')}
-              />
-            </Grid.Col>
-            {/* <Grid.Col xs={12} md={6}>
-              <TextField
-                label="Course Code"
-                placeholder="BING123, KALK222"
-                required={true}
-                {...form.getInputProps('course_code')}
-              />
-            </Grid.Col> */}
+    <div>
+      <HeaderAddEdit
+        breadcrumbs={breadCrumbs}
+        title={`Tabel Kategori Produk`}
+        backUrl="/product-management/category-product"
+        activePage={`add`}
+      />
+      <Card p={'xl'} mih={600}>
+        <Card.Section p={'md'}>
+          {/* for form */}
+          <form
+            onSubmit={form.onSubmit((values: CategoryProductEntity) => {
+              onFormSubmit({
+                ...values,
+                id: initialValues?.id || '',
+                // name: initialValues?.name || '',
+              })
+            })}
+          >
+            <Grid>
+              {/* Mulai section data category product */}
+              <Grid.Col xs={12} md={12}>
+                <Text fw={700} color={'#112D3C'} size={'md'}>
+                  Edit Kategori Produk
+                </Text>
+              </Grid.Col>
+              <Grid.Col xs={12} md={6}>
+                <TextField
+                  label="Nama Kategori Produk"
+                  placeholder="Makanan, Minuman, Snack.."
+                  required={true}
+                  {...form.getInputProps('name')}
+                />
+              </Grid.Col>
+              {/* Other Grid.Cols */}
+            </Grid>
 
-            {/* <Grid.Col xs={12} md={6}>
-              <SelectField
-                label="Course Type"
-                placeholder="Course Type"
-                required={true}
-                data={CourseTypeList}
-                {...form.getInputProps('course_type')}
-              />
-            </Grid.Col> */}
-
-            {/* <Grid.Col xs={12} md={6}>
-              <TextField
-                label="Credits (SKS)"
-                type="number"
-                required={true}
-                placeholder="Credits"
-                {...form.getInputProps('credits')}
-              />
-            </Grid.Col> */}
-
-            {/* <Grid.Col xs={12} md={6}>
-              <SelectField
-                label="School"
-                placeholder="School"
-                required={true}
-                data={SchoolList}
-                {...form.getInputProps('school_id')}
-              />
-            </Grid.Col> */}
-
-            <Button
-              className={classes.submitButton}
-              fullWidth
-              type="submit"
-              loading={submitState}
-            >
-              Save
-            </Button>
-          </Grid>
-        </form>
-      </Card.Section>
-    </Card>
+            <Grid>
+              <Grid.Col md={12} xs={12}>
+                <Flex direction={'row'} gap={'md'} justify={'center'}>
+                  <Button
+                    className={classes.submitButton}
+                    fullWidth
+                    type="submit"
+                    loading={submitState}
+                  >
+                    Save
+                  </Button>
+                </Flex>
+              </Grid.Col>
+            </Grid>
+          </form>
+        </Card.Section>
+      </Card>
+    </div>
   )
 }
 

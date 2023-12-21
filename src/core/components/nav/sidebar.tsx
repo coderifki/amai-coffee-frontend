@@ -60,21 +60,21 @@ const linkData: LinksGroupProps[] = [
       },
     ],
   },
-  {
-    label: 'Product Variant',
-    icon: IconGauge,
-    group: 'Product Management',
-    links: [
-      {
-        label: 'Add Product Variant',
-        link: '/product-management/product-variant/add',
-      },
-      {
-        label: 'Manage Product Variants',
-        link: '/product-management/product-variant/',
-      },
-    ],
-  },
+  // {
+  //   label: 'Product Variant',
+  //   icon: IconGauge,
+  //   group: 'Product Management',
+  //   links: [
+  //     {
+  //       label: 'Add Product Variant',
+  //       link: '/product-management/product-variant/add',
+  //     },
+  //     {
+  //       label: 'Manage Product Variants',
+  //       link: '/product-management/product-variant/',
+  //     },
+  //   ],
+  // },
   {
     label: 'Transaction',
     icon: IconCalendarStats,
