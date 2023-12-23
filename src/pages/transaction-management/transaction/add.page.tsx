@@ -1,6 +1,7 @@
 import AdminLayout from '@/core/AdminLayout'
 import PaymentCard, { ICartItem } from '@/core/components/cards/PaymentCard'
 import ProductCard from '@/core/components/cards/ProductCard'
+import CategorySelector from '@/core/components/selector/CatProductSelector'
 import { getAllProductPagination } from '@/features/product-management/product/prodcut.api'
 import { createPayment } from '@/features/transaction-management/payment/payment.api'
 import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
@@ -123,37 +124,104 @@ export default function AddTransactionPage() {
       setIsLoading(false)
     }
   }
+  const [selectedCategory, setSelectedCategory] = useState<string>('')
+
+  // Callback saat kategori dipilih dari CategorySelector
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category)
+  }
+
+  //   return (
+  //     <AdminLayout>
+  //       {isLoadingProduct ? (
+  //         <p>Product is loading...</p>
+  //       ) : (
+  //         <Grid grow>
+  //           <Grid.Col md={8} xs={12}>
+  //             <Grid>
+  //               {data?.data?.map((item) => (
+  //                 <Grid.Col md={4} key={item.id}>
+  //                   <ProductCard
+  //                     image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80"
+  //                     description="Deskripsi Produk Tidak Ditemukan"
+  //                     id={item?.id || ''}
+  //                     price={item?.price || 0}
+  //                     title={item?.name || 'Nama Produk Tidak Ditemukan'}
+  //                     onClick={(item) =>
+  //                       addCart({
+  //                         ...item,
+  //                         id: item.id,
+  //                         name: item.title,
+  //                         quantity: 1,
+  //                       })
+  //                     }
+  //                   />
+  //                 </Grid.Col>
+  //               ))}
+  //             </Grid>
+  //           </Grid.Col>
+  //           <Grid.Col md={4} xs={12}>
+  //             <PaymentCard
+  //               carts={chart}
+  //               increaseQuantity={increaseQuantity}
+  //               decreaseQuantity={decreaseQuantity}
+  //               removeItem={removeItem}
+  //             />
+  //           </Grid.Col>
+  //         </Grid>
+  //       )}
+
+  //       {/* <HeaderAddEdit
+  //         breadcrumbs={breadCrumbs}
+  //         title={`Tabel Produk`}
+  //         backUrl="/product-management/product"
+  //         activePage={`add`}
+  //       />
+  //       <PaymentsTable data={dummyPaymentsTable} /> */}
+  //     </AdminLayout>
+  //   )
+  // }
 
   return (
     <AdminLayout>
+      {/* Tampilkan CategorySelector */}
+      Select Category Product
+      <CategorySelector onSelectCategory={handleCategorySelect} />
+      <br></br>
+      {/* Grid produk */}
       {isLoadingProduct ? (
         <p>Product is loading...</p>
       ) : (
         <Grid grow>
           <Grid.Col md={8} xs={12}>
             <Grid>
-              {data?.data?.map((item) => (
-                <Grid.Col md={4} key={item.id}>
-                  <ProductCard
-                    image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80"
-                    description="Deskripsi Produk Tidak Ditemukan"
-                    id={item?.id || ''}
-                    price={item?.price || 0}
-                    title={item?.name || 'Nama Produk Tidak Ditemukan'}
-                    onClick={(item) =>
-                      addCart({
-                        ...item,
-                        id: item.id,
-                        name: item.title,
-                        quantity: 1,
-                      })
-                    }
-                  />
-                </Grid.Col>
-              ))}
+              {data?.data
+                ?.filter((item) => item.cat_product_id === selectedCategory) // Filter produk sesuai kategori yang dipilih
+                .map((item) => (
+                  <Grid.Col md={4} key={item.id}>
+                    {/* ProductCard dengan pemilihan kategori */}
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80"
+                      description="Deskripsi Produk Tidak Ditemukan"
+                      id={item?.id || ''}
+                      price={item?.price || 0}
+                      title={item?.name || 'Nama Produk Tidak Ditemukan'}
+                      onClick={(item) =>
+                        addCart({
+                          ...item,
+                          id: item.id,
+                          name: item.title,
+                          quantity: 1,
+                          cat_product_id: selectedCategory, // Mengirim kategori yang dipilih
+                        })
+                      }
+                    />
+                  </Grid.Col>
+                ))}
             </Grid>
           </Grid.Col>
           <Grid.Col md={4} xs={12}>
+            {/* Menampilkan PaymentCard */}
             <PaymentCard
               carts={chart}
               increaseQuantity={increaseQuantity}
@@ -163,14 +231,6 @@ export default function AddTransactionPage() {
           </Grid.Col>
         </Grid>
       )}
-
-      {/* <HeaderAddEdit
-        breadcrumbs={breadCrumbs}
-        title={`Tabel Produk`}
-        backUrl="/product-management/product"
-        activePage={`add`}
-      />
-      <PaymentsTable data={dummyPaymentsTable} /> */}
     </AdminLayout>
   )
 }

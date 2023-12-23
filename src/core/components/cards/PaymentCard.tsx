@@ -16,6 +16,7 @@ export interface ICartItem {
   name: string
   quantity: number
   price: number
+  cat_product_id: string
 }
 
 type Props = {
