@@ -1,13 +1,5 @@
 import PaymentModal from '@/core/layouts/payment/PaymentModal'
-import {
-  Card,
-  Divider,
-  Group,
-  Image,
-  NumberInput,
-  Text,
-  TextInput,
-} from '@mantine/core'
+import { Card, Divider, Group, Image, Text, TextInput } from '@mantine/core'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import { IoIosCloseCircle } from 'react-icons/io'
 
@@ -26,12 +18,29 @@ type Props = {
   removeItem: (id: string) => void
 }
 
+type PaymentData = {
+  payment_method_name: string
+  payment_amount: number
+  customer_name: string
+  // Other fields related to payment data if applicable
+}
+
 export default function PaymentCard({
   carts,
   increaseQuantity,
   decreaseQuantity,
   removeItem,
 }: Props) {
+  // Calculate total amount
+  const totalAmount = carts.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  )
+
+  const handleSubmitPayment = (paymentData: PaymentData) => {
+    // Handle payment submission logic here
+    console.log('Payment data:', paymentData)
+  }
   return (
     <>
       <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -106,7 +115,10 @@ export default function PaymentCard({
                 )}
               </Text>
             </Group>
-            <PaymentModal />
+            <PaymentModal
+              amount={totalAmount}
+              onSubmitPayment={handleSubmitPayment}
+            />
           </>
         )}
         {/* Add Checkout Button */}

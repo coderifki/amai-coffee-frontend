@@ -6,7 +6,7 @@ import { getAllProductPagination } from '@/features/product-management/product/p
 import { createPayment } from '@/features/transaction-management/payment/payment.api'
 import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
 import { breadCrumbs } from '@/types/common'
-import { Grid } from '@mantine/core'
+import { Grid, Text } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -131,61 +131,12 @@ export default function AddTransactionPage() {
     setSelectedCategory(category)
   }
 
-  //   return (
-  //     <AdminLayout>
-  //       {isLoadingProduct ? (
-  //         <p>Product is loading...</p>
-  //       ) : (
-  //         <Grid grow>
-  //           <Grid.Col md={8} xs={12}>
-  //             <Grid>
-  //               {data?.data?.map((item) => (
-  //                 <Grid.Col md={4} key={item.id}>
-  //                   <ProductCard
-  //                     image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80"
-  //                     description="Deskripsi Produk Tidak Ditemukan"
-  //                     id={item?.id || ''}
-  //                     price={item?.price || 0}
-  //                     title={item?.name || 'Nama Produk Tidak Ditemukan'}
-  //                     onClick={(item) =>
-  //                       addCart({
-  //                         ...item,
-  //                         id: item.id,
-  //                         name: item.title,
-  //                         quantity: 1,
-  //                       })
-  //                     }
-  //                   />
-  //                 </Grid.Col>
-  //               ))}
-  //             </Grid>
-  //           </Grid.Col>
-  //           <Grid.Col md={4} xs={12}>
-  //             <PaymentCard
-  //               carts={chart}
-  //               increaseQuantity={increaseQuantity}
-  //               decreaseQuantity={decreaseQuantity}
-  //               removeItem={removeItem}
-  //             />
-  //           </Grid.Col>
-  //         </Grid>
-  //       )}
-
-  //       {/* <HeaderAddEdit
-  //         breadcrumbs={breadCrumbs}
-  //         title={`Tabel Produk`}
-  //         backUrl="/product-management/product"
-  //         activePage={`add`}
-  //       />
-  //       <PaymentsTable data={dummyPaymentsTable} /> */}
-  //     </AdminLayout>
-  //   )
-  // }
-
   return (
     <AdminLayout>
       {/* Tampilkan CategorySelector */}
-      Select Category Product
+      <Text pb="8px" fz="md">
+        Select Category Product
+      </Text>
       <CategorySelector onSelectCategory={handleCategorySelect} />
       <br></br>
       {/* Grid produk */}
