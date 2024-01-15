@@ -1,7 +1,10 @@
-import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
+import { ICartItem } from '@/core/components/cards/PaymentCard'
+import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
 
-export interface SubmitCreateCategoryProduct {
-  onFormSubmit: (data: CategoryProductEntity) => void
-  defaultValues?: CategoryProductEntity
+export interface SubmitCreateTransaction {
+  onFormSubmit: (data: PaymentMethodEntity) => void
+  defaultValues?: PaymentMethodEntity
   isLoading: boolean
+  amount: number
+  carts: ICartItem[]
 }

@@ -163,7 +163,7 @@ export default function LoginForm({ onSubmit, isLoading }: Props) {
                     handleSubmit({
                       login_id: values.email,
                       password: values.password,
-                      user_type: 'SUPER_ADMIN',
+                      user_type: 'ADMIN' || 'CASHIER',
                     })
                   // {
                   //   console.log(values)

@@ -1,5 +1,10 @@
 import PaymentModal from '@/core/layouts/payment/PaymentModal'
+import { createPayment } from '@/features/transaction-management/payment/payment.api'
+import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
 import { Card, Divider, Group, Image, Text, TextInput } from '@mantine/core'
+import { useRouter } from 'next/router'
+import React from 'react'
+import toast from 'react-hot-toast'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import { IoIosCloseCircle } from 'react-icons/io'
 
@@ -18,12 +23,12 @@ type Props = {
   removeItem: (id: string) => void
 }
 
-type PaymentData = {
-  payment_method_name: string
-  payment_amount: number
-  customer_name: string
-  // Other fields related to payment data if applicable
-}
+// type PaymentData = {
+//   payment_method_name: string
+//   payment_amount: number
+//   customer_name: string
+//   // Other fields related to payment data if applicable
+// }
 
 export default function PaymentCard({
   carts,
@@ -31,16 +36,35 @@ export default function PaymentCard({
   decreaseQuantity,
   removeItem,
 }: Props) {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
   // Calculate total amount
   const totalAmount = carts.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   )
 
-  const handleSubmitPayment = (paymentData: PaymentData) => {
-    // Handle payment submission logic here
-    console.log('Payment data:', paymentData)
+  const handleSubmitPayment = async (paymentData: PaymentMethodEntity) => {
+    setIsLoading(true)
+    try {
+      const res = await createPayment(paymentData)
+      if (res) {
+        toast.success(`Transaksi ${paymentData.id} berhasil dibuat`, {
+          position: 'bottom-center',
+        })
+        router.push('/product-management/product')
+      }
+    } catch (error: any) {
+      console.log(`Error: ${error.message}`)
+    } finally {
+      setIsLoading(false)
+    }
   }
+
+  // const handleSubmitPayment = (paymentData: PaymentData) => {
+  //   // Handle payment submission logic here
+  //   console.log('Payment data:', paymentData)
+  // }
   return (
     <>
       <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -118,6 +142,8 @@ export default function PaymentCard({
             <PaymentModal
               amount={totalAmount}
               onSubmitPayment={handleSubmitPayment}
+              carts={carts}
+              isLoading={isLoading}
             />
           </>
         )}

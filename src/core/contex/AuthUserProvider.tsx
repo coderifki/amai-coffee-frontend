@@ -1,6 +1,5 @@
 import { AuthLoginRequest } from '@/core/layouts/auth/auth'
 import { authLogin } from '@/features/auth/auth.api'
-import { getUserProfile } from '@/features/auth/user/user.api'
 import { UserEntity } from '@/features/auth/user/user.model'
 
 import { deleteCookie, setCookie } from 'cookies-next'
@@ -20,9 +19,12 @@ export const AuthUserContext: Context<AuthUser> = createContext<AuthUser>({
   loading: false,
   user: null,
 })
+// export const AuthUserContext: Context<AuthUser | null> =
+//   createContext<AuthUser | null>(null) // Updated context to allow null values
 
 export function AuthUserProvider({ children }: { children: React.ReactNode }) {
   const [customLoading, setCustomLoading] = useState(false)
+  const [user, setUser] = useState<UserEntity | null>(null) // Tambahkan state untuk menyimpan informasi pengguna
 
   const router = useRouter()
 
@@ -32,10 +34,12 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
       const isLogin: any = await authLogin({
         login_id: props.login_id,
         password: props.password,
-        user_type: props?.user_type || 'SUPER_ADMIN',
+        user_type: props?.user_type || 'ADMIN' || 'CASHIER',
       })
 
       if (!isLogin) {
+        setUser(isLogin.data.data.user) // Asumsi informasi pengguna ada di isLogin.data.data.user
+        // localStorage.setItem('user', JSON.stringify(isLogin.data.data.user))
         return null
       }
       // console.log('test jwt:', isLogin.data.data.jwt_token)
@@ -71,6 +75,7 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
     deleteCookie('user')
     deleteCookie('token')
     localStorage.removeItem('access_token')
+    setUser(null)
     setCustomLoading(false)
     router.push('/')
   }
@@ -79,7 +84,7 @@ export function AuthUserProvider({ children }: { children: React.ReactNode }) {
     <AuthUserContext.Provider
       value={{
         loading: customLoading,
-        user: null,
+        user: user,
         logInWithCredentials,
         logOut,
       }}

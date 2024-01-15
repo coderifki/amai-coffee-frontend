@@ -1,31 +1,164 @@
-import { Button, Grid, Group, Input, Modal, Radio, Text } from '@mantine/core'
+import { ICartItem } from '@/core/components/cards/PaymentCard'
+import { useAuth } from '@/core/contex/AuthUserProvider'
+import { getAllPaymentPagination } from '@/features/transaction-management/payment/payment.api'
+import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
+import { SubmitCreateTransaction } from '@/pages/transaction-management/recap-transaction/add-form/add-form-model'
+import { removeEmptyKey } from '@/utils/remove-empty-key'
+import {
+  Button,
+  Grid,
+  Group,
+  Input,
+  Modal,
+  Radio,
+  Text,
+  createStyles,
+} from '@mantine/core'
+import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+const useStyles = createStyles(() => ({
+  gridContainer: {
+    margin: '10px 0 0 0',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  nextButton: {
+    marginTop: '10px',
+    backgroundColor: '#BCA37F !important',
+    border: 'none',
+    color: '#fff',
+  },
+}))
 
 type PaymentModalProps = {
+  onSubmitPayment: (paymentData: PaymentMethodEntity) => void // Update 'any' to the correct type if possible}
+  isLoading: boolean
+  defaultValues?: PaymentMethodEntity
   amount: number // Define the type of 'amount' as a number (assuming it's a numeric value)
-  onSubmitPayment: (paymentData: any) => void // Update 'any' to the correct type if possible}
+  carts: ICartItem[]
 }
+
 export default function PaymentModal({
-  amount,
+  // onFormSubmit,
   onSubmitPayment,
+  defaultValues,
+  amount,
+  carts,
+  isLoading,
 }: PaymentModalProps) {
+  // const { classes } = useStyles()
+  // const form = useForm({
+  //   initialValues: {
+  //     id: '',
+  //     name: '',
+  //   },
+  //   validate: {
+  //     // informasi umum
+  //     name: (value) => (value ? null : 'Nama Cetegory Product harus diisi'),
+  //   },
+  // })
+
+  const auth = useAuth()
+  // Add this section to check if user information is available
+  useEffect(() => {
+    if (auth && auth.user) {
+      console.log('Informasi Pengguna:', auth.user) // Menampilkan informasi pengguna ke konsol
+    }
+  }, [auth])
+
+  // const handleSubmit = (data: PaymentMethodEntity) => {
+  //   const tmpData = {
+  //     ...data,
+  //   }
+  //   onFormSubmit(removeEmptyKey(tmpData))
+  // }
+  // React.useEffect(() => {
+  //   if (defaultValues) {
+  //     form.setFieldValue('id', defaultValues?.id || '')
+  //     form.setFieldValue('name', defaultValues?.name || '')
+  //   }
+  // }, [defaultValues])
+
   const [opened, { open, close }] = useDisclosure(false)
   const [customerName, setCustomerName] = useState('')
+  const [cashierId, setCashierId] = useState('')
   const [paymentMethod, setPaymentMethod] = useState('tunai')
   const [customerPayment, setCustomerPayment] = useState('')
   const [isDataComplete, setIsDataComplete] = useState(false)
+  const [chekcoutProduct, setCeckoutProduct] = useState<PaymentMethodEntity[]>(
+    []
+  )
+
+  useEffect(() => {
+    async function fetchPayment() {
+      try {
+        // Panggil fungsi API yang telah kamu buat sebelumnya
+        const result = await getAllPaymentPagination({
+          page: 1,
+          limit: 10,
+        })
+        if (result && result.data) {
+          setCeckoutProduct(result.data)
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error)
+      }
+    }
+
+    fetchPayment()
+  }, [])
+
+  const form = useForm({
+    initialValues: {
+      id: '',
+      name: '',
+      price: 0,
+      cat_product_id: '',
+      file: '',
+    },
+    validate: {
+      // informasi umum
+      name: (value) => (value ? null : 'Nama Product harus diisi'),
+      price: (value) => (value && value !== 0 ? null : 'Masukan harga product'),
+      cat_product_id: (value) => (value ? null : 'Pilih salah satu kategori'),
+      file: (value) => (value ? null : 'Ungaah Foto Produk'),
+    },
+  })
 
   const handleSubmitPayment = () => {
-    if (customerName && paymentMethod && customerPayment) {
-      onSubmitPayment({
+    console.log(handleSubmitPayment)
+    const parsedCustomerPayment = parseFloat(customerPayment)
+
+    if (
+      customerName &&
+      paymentMethod &&
+      !isNaN(parsedCustomerPayment) &&
+      carts.length > 0
+    ) {
+      const transactionDetails = carts.map((item) => ({
+        category: item.cat_product_id,
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      }))
+
+      const paymentData = {
+        id: '', // Generate or retrieve the ID as needed
+        cashier_id: '', // Set the appropriate cashier ID
+        name_customer: customerName,
+        total_transactions: amount, // Calculate or set the total transactions
         payment_method_name: paymentMethod,
-        payment_amount: amount,
-        customer_name: customerName,
-      })
+        pay: parsedCustomerPayment,
+        created_at: new Date(), // Set appropriate date
+        updated_at: new Date(), // Set appropriate date
+        transaction_details: transactionDetails, // Add transaction details if necessary
+      }
+      onSubmitPayment(paymentData)
       close()
     } else {
-      // Jika ada data yang belum terisi, tampilkan pesan kesalahan atau modal
       setIsDataComplete(false)
     }
   }
@@ -37,6 +170,7 @@ export default function PaymentModal({
 
   return (
     <>
+      {/* <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}> */}
       <Group position="center">
         <Button
           variant="light"
@@ -57,6 +191,15 @@ export default function PaymentModal({
       >
         {/* Modal content */}
         <Grid>
+          <Grid.Col>
+            <Group sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Text fw={500} fz="lg" mb={10}>
+                Payment Method
+              </Text>
+              {/* <Text fz="md">Rp. {amount}</Text> */}
+            </Group>
+          </Grid.Col>
+
           <Grid.Col>
             <Group sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Text fz="md">Total Pembayaran</Text>
@@ -96,7 +239,7 @@ export default function PaymentModal({
               defaultValue="tunai"
               label="Select your payment method"
               description="You can only select one payment method"
-              // onChange={(event) => setPaymentMethod(event.target.value)}
+              // onChange={(event) => setPaymentMethod(event.currentTarget.value)}
               onChange={(value) => setPaymentMethod(value)}
               withAsterisk
             >
@@ -120,7 +263,10 @@ export default function PaymentModal({
             mx={'auto'}
             my="md"
             radius="md"
+            // type={'submit'}
             onClick={handleSubmitPayment}
+            // className={classes.nextButton}
+            loading={isLoading}
           >
             Bayar
           </Button>
@@ -138,6 +284,7 @@ export default function PaymentModal({
           </Modal>
         </Grid>
       </Modal>
+      {/* </form> */}
     </>
   )
 }

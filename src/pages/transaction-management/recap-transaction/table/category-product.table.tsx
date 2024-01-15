@@ -17,7 +17,7 @@ import Link from 'next/link'
 import { formatNumberIndoCurrency } from '@/utils/formatNumberIndoCurrency'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 
-interface CourseTableProps {
+interface CatProductTableProps {
   isLoading: boolean
   data: CategoryProductEntity[]
   pageCount: number
@@ -33,7 +33,7 @@ export const CategoryProductTableComponent = ({
   pageSize,
   currentPage,
   onCurrentPageChange,
-}: CourseTableProps) => {
+}: CatProductTableProps) => {
   const columns = React.useMemo<ColumnDef<CategoryProductEntity>[]>(
     () => [
       {

@@ -104,6 +104,7 @@ export default function ProductForm({
       form.setFieldValue('cat_product_id', defaultValues?.cat_product_id || '')
     }
   }, [defaultValues])
+
   return (
     <div>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>

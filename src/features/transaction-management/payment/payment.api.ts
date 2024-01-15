@@ -11,38 +11,43 @@ interface GetAllPaginationRequest {
 const mockList: PaymentMethodEntity[] = [
   {
     id: '',
-    payment_method_id: '1',
+    cashier_id: '',
+    name_customer: '',
+    total_transactions: 0,
+    pay: 0,
+    created_at: new Date(),
+    updated_at: new Date(),
     payment_method_name: 'payment 1',
-    payment_amount: '120000',
-    customer_name: 'Bekih',
+    transaction_details: [],
   },
 ]
 
 const mockData: PaymentMethodEntity = {
   id: '',
-  payment_method_id: '2',
+  cashier_id: '',
+  name_customer: '',
+  total_transactions: 1,
+  pay: 1,
+  created_at: new Date(),
+  updated_at: new Date(),
   payment_method_name: 'payment 2',
-  payment_amount: '12000',
-  customer_name: 'Bekah',
+  transaction_details: [],
 }
 
 // this function doesn't work because the backend doesn't yet create the payment method
 export function createPayment(props: PaymentMethodEntity) {
-  return apiClient.post('categoryproducts/create', props, {
+  return apiClient.post('transactions/create', props, {
     accessToken: 'token',
   })
 }
 
 export function updatePayment(props: PaymentMethodEntity) {
-  return apiClient.patch(
-    `categoryproducts/update/${props.payment_method_id}`,
-    props
-  )
+  return apiClient.patch(`transactions/update/${props.id}`, props)
 }
 
 export async function getPaymentById(query: string) {
   const result = await apiClient.get<BaseResponse<PaymentMethodEntity>>(
-    `/categoryproducts/find${query}`
+    `/transactions/find${query}`
   )
   return result.data.data
 }
@@ -59,7 +64,7 @@ export async function getAllPaymentPagination(
   if (!mock) {
     const fetchApi = await apiClient.get<
       BasePaginatedResponse<PaymentMethodEntity[]>
-    >('/categoryproducts', {
+    >('/transactions', {
       params: {
         page,
         limit,

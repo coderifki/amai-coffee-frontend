@@ -10,6 +10,14 @@ const mockUserProfile: UserEntity = {
   role: 'ADMIN',
 }
 
+const mockUserProfile1: UserEntity = {
+  id: '6467da4802b92f76e3919137',
+  email: 'admin@contag.id',
+  password: '$2b$12$jVbp0y2pHp4MxNfPcVc1Yelj.RVGSbjWy7Vxi5zlmnMlEy/ICwZzu',
+  phone: '081322307975',
+  role: 'CASHIER',
+}
+
 export async function getUserProfile(mock = false) {
   let result: UserEntity | null
   // const responseBuilder = Builder<BaseResponse<UserEntity>>()
