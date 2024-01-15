@@ -1,28 +1,10 @@
 export const choose = [
-  // {
-  //   title: 'School',
-  //   image: '/assets/images/dashboard/dashboard_choose_school.png',
-  //   link: '/auth/login',
-  //   value: 'academic',
-  // },
-  // {
-  //   title: 'Cashier',
-  //   image: '/assets/images/dashboard/dashboard_choose_business.png',
-  //   link: '/auth/login',
-  //   value: 'cahier',
-  // },
   {
     title: 'Login',
     image: '/assets/images/dashboard/dashboard_choose_personal.png',
     link: '/auth/login',
     value: 'login',
   },
-  // {
-  //   title: 'Organization',
-  //   image: '/assets/images/dashboard/dashboard_choose_organization.png',
-  //   link: '/auth/login',
-  //   value: 'organization',
-  // },
 ]
 
 export const menuItem = {
@@ -183,19 +165,6 @@ export const staticLineChatData = [
     description: 'Unique Visitors',
   },
 ]
-
-// export const aplicationData = [
-//   {
-//     title: 'Libur',
-//     count: 0,
-//     description: 'Ajukan Libur Semester',
-//   },
-//   {
-//     title: 'Libur',
-//     count: 0,
-//     description: 'Ajukan Libur Semester',
-//   },
-// ]
 
 export const comingSoonActivity = [
   {

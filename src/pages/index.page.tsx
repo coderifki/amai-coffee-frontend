@@ -1,12 +1,12 @@
 import CurtainLoader from '@components/loader/CurtainLoader'
 import Layouts from '@core/Layouts'
-import ScreeningDashboard from '@core/layouts/dashboard/ScreeningDashboard'
+import Home from './auth/login.page'
 
 export default function DashboardPage() {
   return (
     <Layouts title="Welcome To Melina Coffee">
       <CurtainLoader />
-      <ScreeningDashboard />
+      <Home />
     </Layouts>
   )
 }
