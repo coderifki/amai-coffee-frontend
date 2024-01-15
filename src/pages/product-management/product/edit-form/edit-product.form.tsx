@@ -59,31 +59,15 @@ export const ProductFormEdit = ({
   defaultValues,
   onFormSubmit,
 }: ProductFormProps) => {
-  // const SchoolList = [
-  //   {
-  //     label: 'Universitas Muhammadiyah Tangerang',
-  //     value: '6456c7073ded35a70e486b2f',
-  //   },
-  // ]
-  // const CourseTypeList = [
-  //   {
-  //     label: 'General',
-  //     value: 'General',
-  //   },
-  //   {
-  //     label: 'Specialization',
-  //     value: 'Specialization',
-  //   },
-  // ]
   const [categories, setCategories] = useState<CategoryProductEntity[]>([])
 
   const initialValues = useMemo(() => {
     let init: ProductEntity | null = {
       id: '',
       cat_product_id: '',
-      // name: '',
-      // price: 0,
-      // images: null,
+      name: '',
+      price: 0,
+      images: '',
     }
     if (defaultValues) {
       init = defaultValues
@@ -104,23 +88,22 @@ export const ProductFormEdit = ({
   const preview =
     form?.values?.images && typeof form?.values?.images !== 'string'
       ? URL.createObjectURL(form?.values?.images as Blob)
-      : (form?.values?.images as string)
+      : `http://localhost:3000/api/files?path=${form?.values?.images as string}`
+
+  const handleImageChanges = (file: any) => {
+    console.log('Image changes', file)
+  }
 
   React.useEffect(() => {
     if (defaultValues) {
+      console.log({ defaultValues })
       form.setFieldValue('id', defaultValues?.id || '')
       form.setFieldValue('name', defaultValues?.name || '')
       form.setFieldValue('price', defaultValues?.price || 0)
       form.setFieldValue('cat_product_id', defaultValues?.cat_product_id || '')
+      form.setFieldValue('images', defaultValues?.images || '')
     }
   }, [defaultValues])
-
-  useEffect(() => {
-    if (initialValues) {
-      form.setFieldValue('name', initialValues.name)
-    }
-    // console.log({ initialValues })
-  }, [initialValues])
 
   const { classes } = useStyles()
 
@@ -191,7 +174,7 @@ export const ProductFormEdit = ({
                   placeholder="Unggah Foto"
                   acceptType="image/png,image/jpeg,image/jpg"
                   required={true}
-                  {...form.getInputProps('file')}
+                  {...form.getInputProps('images')}
                 />
               </Grid.Col>
               <Grid.Col xs={12} md={12}>
@@ -209,45 +192,6 @@ export const ProductFormEdit = ({
                   )}
                 </Center>
               </Grid.Col>
-
-              {/* <Grid.Col xs={12} md={6}>
-              <TextField
-                label="Course Code"
-                placeholder="BING123, KALK222"
-                required={true}
-                {...form.getInputProps('course_code')}
-              />
-            </Grid.Col> */}
-
-              {/* <Grid.Col xs={12} md={6}>
-              <SelectField
-                label="Course Type"
-                placeholder="Course Type"
-                required={true}
-                data={CourseTypeList}
-                {...form.getInputProps('course_type')}
-              />
-            </Grid.Col> */}
-
-              {/* <Grid.Col xs={12} md={6}>
-              <TextField
-                label="Credits (SKS)"
-                type="number"
-                required={true}
-                placeholder="Credits"
-                {...form.getInputProps('credits')}
-              />
-            </Grid.Col> */}
-
-              {/* <Grid.Col xs={12} md={6}>
-              <SelectField
-                label="School"
-                placeholder="School"
-                required={true}
-                data={SchoolList}
-                {...form.getInputProps('school_id')}
-              />
-            </Grid.Col> */}
 
               <Button
                 className={classes.submitButton}

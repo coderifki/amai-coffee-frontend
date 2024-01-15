@@ -37,7 +37,7 @@ export function createProduct(props: FormData) {
   return apiClient.post('products/create', props, { accessToken: 'token' })
 }
 
-export function updateProduct(props: ProductEntity) {
+export function updateProduct(props: FormData) {
   // return apiClient.put(`products/update/${props.id}`, props)
   return apiClient.put(`products/update`, props)
 }
