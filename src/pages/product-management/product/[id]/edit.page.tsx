@@ -41,12 +41,12 @@ export default function PeriodEditPage() {
       if (!!payload?.id) {
         try {
           await updateProduct(payload)
-          toast.success(`Kategori produk berhasil dibuat`, {
+          toast.success(`Produk berhasil dibuat`, {
             position: 'bottom-center',
           })
-          router.push('/product-management/-product')
+          router.push('/product-management/product')
         } catch (error: any) {
-          toast.error(`Kategori produk gagal dibuat`, {
+          toast.error(`Produk gagal dibuat`, {
             position: 'bottom-center',
           })
           console.log({ error })
@@ -54,7 +54,7 @@ export default function PeriodEditPage() {
           setIsLoading(false)
         }
       } else {
-        alert('Id kategori produk tidak ditemukan')
+        alert('Id Produk tidak ditemukan')
       }
     } else {
       alert('Something went wrong')

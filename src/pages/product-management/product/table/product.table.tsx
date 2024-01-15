@@ -1,23 +1,26 @@
 import {
+  Button,
+  Group,
+  Loader,
+  Table as MantineTable,
+  Modal,
+  Pagination,
+} from '@mantine/core'
+import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import {
-  Button,
-  Group,
-  Loader,
-  Pagination,
-  Table as MantineTable,
-} from '@mantine/core'
 
-import React, { useEffect } from 'react'
-import Link from 'next/link'
+import { deleteProduct } from '@/features/product-management/product/prodcut.api'
 import { ProductEntity } from '@/features/product-management/product/product.model'
 import { formatNumberIndoCurrency } from '@/utils/formatNumberIndoCurrency'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+import DeleteProductModal from '@/core/components/modal/product-management/delete-confimration-modal-product'
 
-interface CourseTableProps {
+interface ProductTableProps {
   isLoading: boolean
   data: ProductEntity[]
   pageCount: number
@@ -33,7 +36,48 @@ export const ProductTableComponent = ({
   pageSize,
   currentPage,
   onCurrentPageChange,
-}: CourseTableProps) => {
+}: ProductTableProps) => {
+  const [showDetailModal, setShowDetailModal] = useState(false)
+  const [entityToDelete, setEntityToDelete] = useState<ProductEntity | null>(
+    null
+  )
+  const [showModal, setShowModal] = useState(false)
+  const [selectedEntity, setSelectedEntity] = useState<ProductEntity | null>(
+    null
+  )
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
+
+  const handleShowDetail = (id: string) => {
+    const entityToShow = data.find((item) => item.id === id)
+    setSelectedEntity(entityToShow || null)
+    setShowDetailModal(true) // Menggunakan setShowDetailModal untuk membuka modal
+  }
+
+  const handleDeleteClick = (id: string) => {
+    const entity = data.find((item) => item.id === id)
+    setEntityToDelete(entity || null)
+    setShowModal(true)
+  }
+  const confirmDelete = async () => {
+    if (entityToDelete) {
+      try {
+        await deleteProduct(entityToDelete.id)
+
+        // Setelah penghapusan berhasil, tambahkan logika untuk memperbarui data
+        // Misalnya, lakukan fetch ulang data atau manipulasi state yang menyimpan data kategori produk.
+        // Contoh: const updatedData = await fetchData(); setProducts(updatedData);
+
+        setShowModal(false)
+      } catch (error) {
+        console.error('Error deleting entity:', error)
+        // Tampilkan pesan atau notifikasi kesalahan kepada pengguna
+      }
+    }
+  }
+
   const columns = React.useMemo<ColumnDef<ProductEntity>[]>(
     () => [
       {
@@ -65,19 +109,30 @@ export const ProductTableComponent = ({
         cell: ({ getValue }) => {
           return (
             <Group spacing="xs" noWrap>
-              <Link href={`/Courses/detail/${getValue()}`}>
+              <Link href={`/products/detail/${getValue()}`}>
                 <Button variant="outline" size="sm" color="blue">
                   Show
                 </Button>
               </Link>
-              <Link href={`/academic/master-data/course/${getValue()}/edit`}>
+              <Link href={`/product-management/product/${getValue()}/edit`}>
                 <Button variant="outline" size="sm" color="yellow">
                   Edit
                 </Button>
               </Link>
-              <Button variant="outline" size="sm" color="red">
+              <Button
+                variant="outline"
+                size="sm"
+                color="red"
+                onClick={() => handleDeleteClick(String(getValue()))}
+              >
                 Delete
               </Button>
+              <DeleteProductModal
+                isOpen={showModal} // Gunakan showModal di sini untuk mengontrol keberadaan modal
+                onClose={handleCloseModal}
+                id={entityToDelete?.id || ''}
+                onDelete={confirmDelete} // Ubah menjadi confirmDelete agar ketika modal dikonfirmasi, fungsi penghapusan dipanggil
+              />
             </Group>
           )
         },
@@ -192,6 +247,38 @@ export const ProductTableComponent = ({
 
             // onChange={setCurrent}
           />
+          {/* Modal konfirmasi penghapusan */}
+          {showModal && entityToDelete && (
+            <Modal
+              title="Konfirmasi Penghapusan"
+              onClose={() => setShowModal(false)}
+              size="sm"
+              opened
+            >
+              <div>Anda yakin ingin menghapus {entityToDelete.name}?</div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  marginTop: '16px',
+                }}
+              >
+                <Button
+                  variant="outline"
+                  color="red"
+                  onClick={() => confirmDelete()}
+                >
+                  Hapus
+                </Button>
+                <Button
+                  style={{ marginLeft: '8px' }}
+                  onClick={() => setShowModal(false)}
+                >
+                  Batal
+                </Button>
+              </div>
+            </Modal>
+          )}
         </div>
       )}
     </div>

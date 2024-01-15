@@ -13,11 +13,11 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import DeleteCategoryModal from '@/core/components/modal/product-management/delete-confimration-modal'
 import { deleteCatProduct } from '@/features/product-management/category-product/category-product.api'
 import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import DeleteCategoryModal from '@/core/components/modal/product-management/delete-confimration-modal-product'
 
 interface CatProductTableProps {
   isLoading: boolean
@@ -40,15 +40,15 @@ export const CategoryProductTableComponent = ({
   const [selectedEntity, setSelectedEntity] =
     useState<CategoryProductEntity | null>(null)
 
+  const [showModal, setShowModal] = useState(false)
+  const [entityToDelete, setEntityToDelete] =
+    useState<CategoryProductEntity | null>(null)
+
   const handleShowDetail = (id: string) => {
     const entityToShow = data.find((item) => item.id === id)
     setSelectedEntity(entityToShow || null)
     setShowDetailModal(true) // Menggunakan setShowDetailModal untuk membuka modal
   }
-
-  const [showModal, setShowModal] = useState(false)
-  const [entityToDelete, setEntityToDelete] =
-    useState<CategoryProductEntity | null>(null)
 
   const handleDeleteClick = (id: string) => {
     const entity = data.find((item) => item.id === id)

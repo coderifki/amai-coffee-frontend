@@ -152,7 +152,13 @@ export default function AddTransactionPage() {
                   <Grid.Col md={4} key={item.id}>
                     {/* ProductCard dengan pemilihan kategori */}
                     <ProductCard
-                      image="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80"
+                      image={
+                        item?.images
+                          ? `http://localhost:3000/api/files?path=${
+                              item.images as string
+                            }`
+                          : 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=720&amp;q=80'
+                      }
                       description="Deskripsi Produk Tidak Ditemukan"
                       id={item?.id || ''}
                       price={item?.price || 0}

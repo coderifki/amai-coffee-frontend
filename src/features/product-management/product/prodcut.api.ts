@@ -1,8 +1,11 @@
-import { ProductEntity } from '@/features/product-management/product/product.model'
+import {
+  CreateProductProps,
+  ProductEntity,
+} from '@/features/product-management/product/product.model'
 import { apiClient } from '@core/api/base.api'
 import { BasePaginatedResponse, BaseResponse } from '@core/api/base.response'
-import axios from 'axios'
 import { Builder } from 'builder-pattern'
+import { query } from 'express'
 
 interface GetAllPaginationRequest {
   page: number
@@ -30,19 +33,25 @@ const mockData: ProductEntity = {
   images: '',
 }
 
-export function createProduct(props: ProductEntity) {
+export function createProduct(props: FormData) {
   return apiClient.post('products/create', props, { accessToken: 'token' })
 }
 
 export function updateProduct(props: ProductEntity) {
-  return apiClient.put(`products/update/${props.id}`, props)
+  // return apiClient.put(`products/update/${props.id}`, props)
+  return apiClient.put(`products/update`, props)
 }
 
-export async function getProductById(props: string) {
+export async function getProductById(query: string) {
   const result = await apiClient.get<BaseResponse<ProductEntity>>(
-    `/products/find${props}`
+    `/products/find`,
+    { params: { id: query || undefined } }
   )
   return result.data.data
+}
+
+export function deleteProduct(id: string) {
+  return apiClient.delete(`/products/${id}`)
 }
 
 // export async function fetchCategoryInfo(cat_product_name: string) {

@@ -1,15 +1,44 @@
-import { Button, Card, Grid, Text, createStyles } from '@mantine/core'
+import {
+  Avatar,
+  Button,
+  Card,
+  Center,
+  Grid,
+  Text,
+  createStyles,
+} from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
+import InputField from '@/core/form-fields/input-field'
+import SelectField from '@/core/form-fields/select-field'
 import TextField from '@/core/form-fields/text-field'
 import { ProductEntity } from '@/features/product-management/product/product.model'
+import { FaUserAlt } from 'react-icons/fa'
+import { getEnabledCategories } from 'trace_events'
+import { breadCrumbs } from '@/types/common'
+import HeaderAddEdit from '@/core/components/header/HeaderAddEdit'
+import { CategoryProductEntity } from '@/features/product-management/category-product/category-product.model'
 
 export class ProductFormProps {
   submitState: boolean
   defaultValues: ProductEntity | null
   onFormSubmit: (values: ProductEntity) => void
 }
+
+const breadCrumbs: breadCrumbs[] = [
+  { title: 'Dashboard', value: 'dashboard', href: '/dashboard' },
+  {
+    title: 'Tabel Produk',
+    value: 'table_product',
+    href: '/product-management/product',
+  },
+  {
+    title: `Edit Produk`,
+    value: `add`,
+    href: '#',
+  },
+]
 
 const useStyles = createStyles(() => ({
   gridContainer: {
@@ -19,7 +48,7 @@ const useStyles = createStyles(() => ({
   },
   submitButton: {
     marginTop: '10px',
-    backgroundColor: '#018B14 !important',
+    backgroundColor: '#BCA37F !important',
     border: 'none',
     color: '#fff',
   },
@@ -46,14 +75,15 @@ export const ProductFormEdit = ({
   //     value: 'Specialization',
   //   },
   // ]
+  const [categories, setCategories] = useState<CategoryProductEntity[]>([])
 
   const initialValues = useMemo(() => {
     let init: ProductEntity | null = {
       id: '',
-      name: '',
-      price: 0,
       cat_product_id: '',
-      file: '',
+      // name: '',
+      // price: 0,
+      // images: null,
     }
     if (defaultValues) {
       init = defaultValues
@@ -67,9 +97,23 @@ export const ProductFormEdit = ({
       name: (value) => (!value ? ' Product Must be Filled!' : null),
       price: (value) => (!value ? ' Product Must be Filled!' : null),
       cat_product_id: (value) => (!value ? ' Product Must be Filled!' : null),
-      file: (value) => (!value ? ' Product Must be Filled!' : null),
+      images: (value) => (!value ? ' Product Must be Filled!' : null),
     },
   })
+
+  const preview =
+    form?.values?.images && typeof form?.values?.images !== 'string'
+      ? URL.createObjectURL(form?.values?.images as Blob)
+      : (form?.values?.images as string)
+
+  React.useEffect(() => {
+    if (defaultValues) {
+      form.setFieldValue('id', defaultValues?.id || '')
+      form.setFieldValue('name', defaultValues?.name || '')
+      form.setFieldValue('price', defaultValues?.price || 0)
+      form.setFieldValue('cat_product_id', defaultValues?.cat_product_id || '')
+    }
+  }, [defaultValues])
 
   useEffect(() => {
     if (initialValues) {
@@ -83,37 +127,90 @@ export const ProductFormEdit = ({
   if (!initialValues) return null
 
   return (
-    <Card p={'xl'} mih={600}>
-      <Card.Section p={'md'}>
-        {/* for form */}
-        <form
-          onSubmit={form.onSubmit((values: ProductEntity) => {
-            onFormSubmit({
-              ...values,
-              id: initialValues?.id || '',
-              name: initialValues?.name || '',
-              price: initialValues?.price || 0,
-              cat_product_id: initialValues?.cat_product_id || '',
-              file: initialValues?.file || '',
-            })
-          })}
-        >
-          <Grid>
-            {/* Mulai section data mahasiswa */}
-            <Grid.Col xs={12} md={12}>
-              <Text fw={700} color={'#112D3C'} size={'md'}>
-                Edit Kategori Produk{' '}
-              </Text>
-            </Grid.Col>
-            <Grid.Col xs={12} md={6}>
-              <TextField
-                label="Nama Kategori Produk"
-                placeholder="Makanan, Minuman, Snack.."
-                required={true}
-                {...form.getInputProps('name')}
-              />
-            </Grid.Col>
-            {/* <Grid.Col xs={12} md={6}>
+    <div>
+      <HeaderAddEdit
+        breadcrumbs={breadCrumbs}
+        title={`Tabel Produk`}
+        backUrl="/product-management/product"
+        activePage={`add`}
+      />
+      <Card p={'xl'} mih={600}>
+        <Card.Section p={'md'}>
+          {/* for form */}
+          <form
+            onSubmit={form.onSubmit((values: ProductEntity) => {
+              onFormSubmit({
+                ...values,
+                id: initialValues?.id || '',
+                // name: initialValues?.name || '',
+                // price: initialValues?.price || 0,
+                // cat_product_id: initialValues?.cat_product_id || '',
+                // images: initialValues?.images || '' || null,
+              })
+            })}
+          >
+            <Grid>
+              {/* Mulai section data mahasiswa */}
+              <Grid.Col xs={12} md={12}>
+                <Text fw={700} color={'#112D3C'} size={'md'}>
+                  Edit Produk{' '}
+                </Text>
+              </Grid.Col>
+              <Grid.Col xs={12} md={6}>
+                <TextField
+                  label="Nama Produk"
+                  placeholder="Nasi Goreng, Mie Goreng, Kopi, Teh Manis.."
+                  required={true}
+                  {...form.getInputProps('name')}
+                />
+              </Grid.Col>
+              <Grid.Col xs={12} md={6}>
+                <SelectField
+                  label="Kategori"
+                  placeholder="Pilih kategori produk"
+                  required={true}
+                  categories={categories}
+                  value={form.values.cat_product_id || ''}
+                  onChange={(value) =>
+                    form.setFieldValue('cat_product_id', value || '')
+                  }
+                />
+              </Grid.Col>
+              <Grid.Col xs={12} md={6}>
+                <TextField
+                  label="Harga produk"
+                  placeholder="Harga"
+                  type="number"
+                  required={true}
+                  {...form.getInputProps('price')}
+                />
+              </Grid.Col>
+              <Grid.Col xs={12} md={6}>
+                <InputField
+                  label="Unggah Foto"
+                  placeholder="Unggah Foto"
+                  acceptType="image/png,image/jpeg,image/jpg"
+                  required={true}
+                  {...form.getInputProps('file')}
+                />
+              </Grid.Col>
+              <Grid.Col xs={12} md={12}>
+                <Center>
+                  {!preview ? (
+                    <Avatar
+                      // className={classes.placeholder}
+                      size="xl"
+                      sx={{ backgroundColor: '#CED4DA' }}
+                    >
+                      <FaUserAlt />
+                    </Avatar>
+                  ) : (
+                    <Avatar size="xl" src={preview} />
+                  )}
+                </Center>
+              </Grid.Col>
+
+              {/* <Grid.Col xs={12} md={6}>
               <TextField
                 label="Course Code"
                 placeholder="BING123, KALK222"
@@ -122,7 +219,7 @@ export const ProductFormEdit = ({
               />
             </Grid.Col> */}
 
-            {/* <Grid.Col xs={12} md={6}>
+              {/* <Grid.Col xs={12} md={6}>
               <SelectField
                 label="Course Type"
                 placeholder="Course Type"
@@ -132,7 +229,7 @@ export const ProductFormEdit = ({
               />
             </Grid.Col> */}
 
-            {/* <Grid.Col xs={12} md={6}>
+              {/* <Grid.Col xs={12} md={6}>
               <TextField
                 label="Credits (SKS)"
                 type="number"
@@ -142,7 +239,7 @@ export const ProductFormEdit = ({
               />
             </Grid.Col> */}
 
-            {/* <Grid.Col xs={12} md={6}>
+              {/* <Grid.Col xs={12} md={6}>
               <SelectField
                 label="School"
                 placeholder="School"
@@ -152,18 +249,19 @@ export const ProductFormEdit = ({
               />
             </Grid.Col> */}
 
-            <Button
-              className={classes.submitButton}
-              fullWidth
-              type="submit"
-              loading={submitState}
-            >
-              Save
-            </Button>
-          </Grid>
-        </form>
-      </Card.Section>
-    </Card>
+              <Button
+                className={classes.submitButton}
+                fullWidth
+                type="submit"
+                loading={submitState}
+              >
+                Save
+              </Button>
+            </Grid>
+          </form>
+        </Card.Section>
+      </Card>
+    </div>
   )
 }
 
