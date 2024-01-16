@@ -1,9 +1,11 @@
 import { ICartItem } from '@/core/components/cards/PaymentCard'
 import { useAuth } from '@/core/contex/AuthUserProvider'
 import { getAllPaymentPagination } from '@/features/transaction-management/payment/payment.api'
-import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
-import { SubmitCreateTransaction } from '@/pages/transaction-management/recap-transaction/add-form/add-form-model'
-import { removeEmptyKey } from '@/utils/remove-empty-key'
+import {
+  CreateTransactionDto,
+  PaymentMethodEntity,
+  TransactionDetailsDto,
+} from '@/features/transaction-management/payment/payment.model'
 import {
   Button,
   Grid,
@@ -16,7 +18,7 @@ import {
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useDisclosure } from '@mantine/hooks'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useStyles = createStyles(() => ({
   gridContainer: {
@@ -33,7 +35,7 @@ const useStyles = createStyles(() => ({
 }))
 
 type PaymentModalProps = {
-  onSubmitPayment: (paymentData: PaymentMethodEntity) => void // Update 'any' to the correct type if possible}
+  onSubmitPayment: (paymentData: CreateTransactionDto) => void // Update 'any' to the correct type if possible}
   isLoading: boolean
   defaultValues?: PaymentMethodEntity
   amount: number // Define the type of 'amount' as a number (assuming it's a numeric value)
@@ -128,7 +130,6 @@ export default function PaymentModal({
   })
 
   const handleSubmitPayment = () => {
-    console.log(handleSubmitPayment)
     const parsedCustomerPayment = parseFloat(customerPayment)
 
     if (
@@ -137,25 +138,19 @@ export default function PaymentModal({
       !isNaN(parsedCustomerPayment) &&
       carts.length > 0
     ) {
-      const transactionDetails = carts.map((item) => ({
-        category: item.cat_product_id,
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
+      const transactionDetails: TransactionDetailsDto[] = carts.map((item) => ({
+        product_id: item.id,
+        qty: item.quantity,
       }))
 
-      const paymentData = {
-        id: '', // Generate or retrieve the ID as needed
-        cashier_id: '', // Set the appropriate cashier ID
+      const paymentData: CreateTransactionDto = {
         name_customer: customerName,
         total_transactions: amount, // Calculate or set the total transactions
         payment_method_name: paymentMethod,
         pay: parsedCustomerPayment,
-        created_at: new Date(), // Set appropriate date
-        updated_at: new Date(), // Set appropriate date
         transaction_details: transactionDetails, // Add transaction details if necessary
       }
+
       onSubmitPayment(paymentData)
       close()
     } else {

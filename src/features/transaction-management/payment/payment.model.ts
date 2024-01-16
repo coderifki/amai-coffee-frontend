@@ -9,6 +9,18 @@ export class PaymentMethodEntity {
   updated_at?: Date
   transaction_details: TransactionDetails[]
 }
+export class TransactionDetailsDto {
+  product_id: string
+  qty: number
+}
+
+export class CreateTransactionDto {
+  name_customer: string
+  total_transactions: number
+  pay: number
+  payment_method_name: string
+  transaction_details: TransactionDetailsDto[]
+}
 
 export class TransactionDetails {
   id: string

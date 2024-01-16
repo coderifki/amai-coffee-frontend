@@ -1,6 +1,9 @@
 import PaymentModal from '@/core/layouts/payment/PaymentModal'
 import { createPayment } from '@/features/transaction-management/payment/payment.api'
-import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
+import {
+  CreateTransactionDto,
+  PaymentMethodEntity,
+} from '@/features/transaction-management/payment/payment.model'
 import { Card, Divider, Group, Image, Text, TextInput } from '@mantine/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -12,6 +15,7 @@ export interface ICartItem {
   id: string
   name: string
   quantity: number
+  image?: string
   price: number
   cat_product_id: string
 }
@@ -44,12 +48,12 @@ export default function PaymentCard({
     0
   )
 
-  const handleSubmitPayment = async (paymentData: PaymentMethodEntity) => {
+  const handleSubmitPayment = async (createPayload: CreateTransactionDto) => {
     setIsLoading(true)
     try {
-      const res = await createPayment(paymentData)
+      const res = await createPayment(createPayload)
       if (res) {
-        toast.success(`Transaksi ${paymentData.id} berhasil dibuat`, {
+        toast.success(`Transaksi berhasil dibuat`, {
           position: 'bottom-center',
         })
         router.push('/product-management/product')
@@ -81,7 +85,7 @@ export default function PaymentCard({
               <div key={index}>
                 <Group mt="md" mb="xs">
                   <Image
-                    src="/assets/images/card-product/Nasi-Goreng.jpg"
+                    src={item?.image || 'http://fakeimg.pl/200x400'}
                     width={80}
                     fit="contain"
                     alt="Norway"
