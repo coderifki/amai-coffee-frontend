@@ -55,6 +55,13 @@ export async function getPaymentById(query: string) {
   return result.data.data
 }
 
+export async function getPaymentDetailById(query: string) {
+  const result = await apiClient.get<BaseResponse<PaymentMethodEntity>>(
+    `/transactions/find/details${query}`
+  )
+  return result.data.data
+}
+
 export async function getAllPaymentPagination(
   props: GetAllPaginationRequest,
   mock = false

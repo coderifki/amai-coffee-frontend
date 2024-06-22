@@ -24,7 +24,11 @@ export function AboutUsCustomer() {
   // const [opened, { open, close }] = useDisclosure(false)
   return (
     <div className="min-h-screen bg-gray-100 ">
-      <MetaCustomer></MetaCustomer>
+      <MetaCustomer
+        title="About Us "
+        description="About Us Melina Coffee"
+        keyword="Melina Coffee About Us"
+      ></MetaCustomer>
       <Navbar></Navbar>
       <div className="bg-white mt-16 pb-6">
         <div className="flex justify-center">
@@ -101,19 +105,7 @@ export function AboutUsCustomer() {
           </div>
         </section>
       </div>
-      <div
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        className="flex justify-center p-8 bg-white border"
-      >
-        <img
-          src="/assets/images/login/melina_coffee_logo1_removebg.png"
-          className="h-8 mr-2"
-        />
-        <span className="text-[#A75D5D] font-semibold text-xl">
-          Melina Coffee
-        </span>
-      </div>
+
       {/* <EmblaCarousel
         slides={[
           <img

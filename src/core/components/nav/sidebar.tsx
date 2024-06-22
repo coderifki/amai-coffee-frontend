@@ -116,34 +116,34 @@ const linkData: LinksGroupProps[] = [
   //     },
   //   ],
   // },
-  {
-    label: 'Teachers',
-    icon: IconNotes,
-    initiallyOpened: false,
-    group: 'academic',
-    links: [
-      {
-        label: 'Add Teacher',
-        link: '/academic/teacher/add',
-      },
-      {
-        label: 'Manage Teachers',
-        link: '/academic/teacher',
-      },
-    ],
-  },
-  {
-    label: 'Student',
-    icon: IconCalendarStats,
-    group: 'academic',
-    links: [
-      { label: 'Add Student', link: '/academic/student/add' },
-      // { label: 'Add Student', link: '/user/mahasiswa/add' },
-      { label: 'Manage Student', link: '/academic/student' },
-      // { label: 'Manage Student', link: '/user/mahasiswa' },
-      // { label: 'Manage Student Card', link: '/academic/student/card' },
-    ],
-  },
+  // {
+  //   label: 'Teachers',
+  //   icon: IconNotes,
+  //   initiallyOpened: false,
+  //   group: 'academic',
+  //   links: [
+  //     {
+  //       label: 'Add Teacher',
+  //       link: '/academic/teacher/add',
+  //     },
+  //     {
+  //       label: 'Manage Teachers',
+  //       link: '/academic/teacher',
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: 'Student',
+  //   icon: IconCalendarStats,
+  //   group: 'academic',
+  //   links: [
+  //     { label: 'Add Student', link: '/academic/student/add' },
+  //     // { label: 'Add Student', link: '/user/mahasiswa/add' },
+  //     { label: 'Manage Student', link: '/academic/student' },
+  //     // { label: 'Manage Student', link: '/user/mahasiswa' },
+  //     // { label: 'Manage Student Card', link: '/academic/student/card' },
+  //   ],
+  // },
 
   // {
   //   label: 'Examination',
@@ -411,15 +411,15 @@ const linkData: LinksGroupProps[] = [
   //     { label: 'Recovery codes', link: '/' },
   //   ],
   // },
-  {
-    label: 'User',
-    icon: IconUserCircle,
-    group: 'user',
-    links: [
-      { label: 'User Detail', link: '/' },
-      { label: 'Change password', link: '/' },
-    ],
-  },
+  // {
+  //   label: 'User',
+  //   icon: IconUserCircle,
+  //   group: 'user',
+  //   links: [
+  //     { label: 'User Detail', link: '/' },
+  //     { label: 'Change password', link: '/' },
+  //   ],
+  // },
 ]
 
 const useStyles = createStyles((theme) => {

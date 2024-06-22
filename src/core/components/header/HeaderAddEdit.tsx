@@ -38,7 +38,12 @@ interface Props {
   title: string
   breadcrumbs: { title: string; value: string; href: string }[]
   backUrl: string
-  activePage: 'add' | 'table_mahasiswa' | 'profile' | 'edit'
+  activePage:
+    | 'add'
+    | 'table_mahasiswa'
+    | 'profile'
+    | 'edit'
+    | 'detail-transaction'
 }
 
 export default function HeaderAddEdit({
