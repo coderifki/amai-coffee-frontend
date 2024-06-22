@@ -93,17 +93,17 @@ const linkData: LinksGroupProps[] = [
       // { label: 'Manage Student Card', link: '/academic/student/card' },
     ],
   },
-  {
-    label: 'Recap Transaction',
-    icon: IconCalendarStats,
-    group: 'Transaction Management',
-    links: [
-      // { label: 'Add Student', link: '/academic/student/add' },
-      // { label: 'Add Student', link: '/user/mahasiswa/add' },
-      { label: 'Manage Recap Transaction', link: '/recap/' },
-      // { label: 'Manage Student Card', link: '/academic/student/card' },
-    ],
-  },
+  // {
+  //   label: 'Recap Transaction',
+  //   icon: IconCalendarStats,
+  //   group: 'Transaction Management',
+  //   links: [
+  //     // { label: 'Add Student', link: '/academic/student/add' },
+  //     // { label: 'Add Student', link: '/user/mahasiswa/add' },
+  //     { label: 'Manage Recap Transaction', link: '/recap/' },
+  //     // { label: 'Manage Student Card', link: '/academic/student/card' },
+  //   ],
+  // },
   // {
   //   label: 'Admission',
   //   icon: IconNotes,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas'
+import * as XLSX from 'xlsx'
 import {
   Button,
   Group,
@@ -65,9 +65,8 @@ export const TransactionTableComponent = ({
   onCurrentPageChange,
 }: PaymentTableProps) => {
   const { classes } = useStyles()
-  const tableRef = useRef<HTMLDivElement>(null) // Reference to the table
+  const tableRef = useRef<HTMLDivElement>(null)
 
-  // Existing state and functions...
   const [customLoading, setCustomLoading] = useState(isLoading)
   const [reactTableIndex, setReactTableIndex] = useState(currentPage)
   const [rowPerPage, setRowPerPage] = useState<string | null>('5')
@@ -166,28 +165,25 @@ export const TransactionTableComponent = ({
   })
 
   // Function to handle exporting the PDF
-  const handleExportPDF = async (transaction: PaymentMethodEntity) => {
+  const handleExportPDF = (transaction: PaymentMethodEntity) => {
     const pdf = new jsPDF()
 
-    // Set up the PDF layout
     pdf.setFontSize(16)
     pdf.text('Transaction Receipt', 20, 20)
     pdf.setFontSize(12)
 
-    // Add details to the PDF
     const leftColumnX = 20 // X-coordinate for the labels
-    const rightColumnX = 100 // X-coordinate for the values
+    const rightColumnX = 120 // X-coordinate for the values
 
-    // Add details to the PDF
-    // pdf.text('ID Transaksi:', leftColumnX, 40)
-    // pdf.text(transaction.id, rightColumnX, 40, { align: 'right' })
+    pdf.text('ID Transaksi :', leftColumnX, 40)
+    pdf.text(transaction.id, rightColumnX, 40, { align: 'right' })
 
     pdf.text('Metode Transaksi :', leftColumnX, 50)
     pdf.text(transaction.payment_method_name, rightColumnX, 50, {
       align: 'right',
     })
 
-    pdf.text('Total Transaksi :', leftColumnX, 60)
+    pdf.text('Total Pembayaran :', leftColumnX, 60)
     pdf.text(transaction.total_transactions.toString(), rightColumnX, 60, {
       align: 'right',
     })
@@ -195,23 +191,50 @@ export const TransactionTableComponent = ({
     pdf.text('Nama Pembeli :', leftColumnX, 70)
     pdf.text(transaction.name_customer, rightColumnX, 70, { align: 'right' })
 
-    pdf.text('Tanggal :', leftColumnX, 90)
+    pdf.text('Created At:', leftColumnX, 80)
     pdf.text(
       format(new Date(transaction.created_at), 'dd/MM/yyyy'),
       rightColumnX,
-      90,
+      80,
       { align: 'right' }
     )
-    // pdf.text('ID Cashier:', leftColumnX, 80)
-    // pdf.text(transaction.cashier_id, rightColumnX, 80, { align: 'right' })
 
-    // Save the PDF
+    // pdf.text('ID Cashier:', leftColumnX, 90)
+    // pdf.text(transaction.cashier_id, rightColumnX, 90, { align: 'right' })
     pdf.save(`transaction-${transaction.id}.pdf`)
+  }
+
+  // Function to handle exporting to Excel
+  const handleExportExcel = () => {
+    // Prepare the data for Excel
+    const exportData = data.map((item) => ({
+      'ID Transaksi': item.id,
+      'Metode Transaksi': item.payment_method_name,
+      'Total Transaksi': item.total_transactions,
+      'Nama Pembeli': item.name_customer,
+      'ID Cashier': item.cashier_id,
+      'Created At': format(new Date(item.created_at), 'dd/MM/yyyy'),
+    }))
+
+    // Create a new workbook and add the data
+    const workbook = XLSX.utils.book_new()
+    const worksheet = XLSX.utils.json_to_sheet(exportData)
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Transactions')
+
+    // Save the workbook as an Excel file
+    XLSX.writeFile(workbook, 'transactions.xlsx')
   }
 
   return (
     <div>
       <h1>Manage Transaction</h1>
+      <div className="flex justify-end">
+        <Group position="apart" mb="lg">
+          <Button variant="outline" color="green" onClick={handleExportExcel}>
+            Recap to Excel
+          </Button>
+        </Group>
+      </div>
       {customLoading ? (
         <Loader />
       ) : (
