@@ -96,19 +96,7 @@ export function HomeDashboardCustomer() {
           </div>
         </section>
       </div>
-      <div
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        className="flex justify-center p-8 bg-white border"
-      >
-        <img
-          src="/assets/images/login/melina_coffee_logo1_removebg.png"
-          className="h-8 mr-2"
-        />
-        <span className="text-[#A75D5D] font-semibold text-xl">
-          Melina Coffee
-        </span>
-      </div>
+
       {/* <EmblaCarousel
         slides={[
           <img

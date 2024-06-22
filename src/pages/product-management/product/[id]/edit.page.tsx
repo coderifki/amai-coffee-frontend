@@ -37,16 +37,29 @@ export default function PeriodEditPage() {
 
   const handleSubmit = async (payload: ProductEntity) => {
     if (payload) {
-      setIsLoading(true)
+      // console.log(payload)
       if (!!payload?.id) {
         try {
-          await updateProduct(payload)
-          toast.success(`Kategori produk berhasil dibuat`, {
+          console.log(payload)
+          setIsLoading(true)
+          const formData = new FormData()
+          formData.append('id', payload.id)
+          payload.name && formData.append('name', payload.name)
+          payload.price && formData.append('price', payload.price.toString())
+          if (payload.cat_product_id) {
+            formData.append('cat_product_id', payload.cat_product_id)
+          }
+          if (payload.images && typeof payload.images !== 'string') {
+            formData.append('image', payload.images as Blob)
+          }
+          // console.log(formData.get('images'))
+          await updateProduct(formData)
+          toast.success(`Produk berhasil di ubah`, {
             position: 'bottom-center',
           })
-          router.push('/product-management/-product')
+          router.push('/product-management/product')
         } catch (error: any) {
-          toast.error(`Kategori produk gagal dibuat`, {
+          toast.error(`Produk gagal diubah`, {
             position: 'bottom-center',
           })
           console.log({ error })
@@ -54,7 +67,7 @@ export default function PeriodEditPage() {
           setIsLoading(false)
         }
       } else {
-        alert('Id kategori produk tidak ditemukan')
+        alert('Id Produk tidak ditemukan')
       }
     } else {
       alert('Something went wrong')

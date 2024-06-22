@@ -72,14 +72,14 @@ export default function ProductForm({
       name: '',
       price: 0,
       cat_product_id: '',
-      file: '',
+      image: '',
     },
     validate: {
       // informasi umum
       name: (value) => (value ? null : 'Nama Product harus diisi'),
       price: (value) => (value && value !== 0 ? null : 'Masukan harga product'),
       cat_product_id: (value) => (value ? null : 'Pilih salah satu kategori'),
-      file: (value) => (value ? null : 'Ungaah Foto Produk'),
+      image: (value) => (value ? null : 'Ungaah Foto Produk'),
     },
   })
 
@@ -92,9 +92,9 @@ export default function ProductForm({
   }
 
   const preview =
-    form?.values?.file && typeof form?.values?.file !== 'string'
-      ? URL.createObjectURL(form?.values?.file)
-      : (form?.values?.file as string)
+    form?.values?.image && typeof form?.values?.image !== 'string'
+      ? URL.createObjectURL(form?.values?.image)
+      : (form?.values?.image as string)
 
   React.useEffect(() => {
     if (defaultValues) {
@@ -150,7 +150,7 @@ export default function ProductForm({
               placeholder="Unggah Foto"
               acceptType="image/png,image/jpeg,image/jpg"
               required={true}
-              {...form.getInputProps('file')}
+              {...form.getInputProps('image')}
             />
           </Grid.Col>
           <Grid.Col xs={12} md={12}>

@@ -3,7 +3,7 @@ import Navbar from '@/core/components/customers/Header'
 import MetaCustomer from '@/core/components/customers/MetaCustomer'
 import ProductCardCustomer from '@/core/components/customers/ProductCardCustomer'
 import TextLogo from '@/core/components/customers/TextLogo'
-import { useDisclosure } from '@mantine/hooks'
+import TransactionCustomerPage from '@/core/components/customers/TransactionCustomer'
 
 // const slides = [
 //   <img
@@ -26,19 +26,21 @@ export function ProductCustomerLayout() {
   // const [opened, { open, close }] = useDisclosure(false)
   return (
     <div className="min-h-screen bg-gray-100 ">
-      <MetaCustomer></MetaCustomer>
+      {/* <MetaCustomer></MetaCustomer> */}
       <Navbar></Navbar>
       <div className="bg-white mt-16 pb-6">
         <div className="flex justify-center">
           <TextLogo title="Our Menu" />
         </div>
         <div className="text-[#A75D5D] font-semibold text-center px-16 mb-10 sm:text-xl">
-          Indulge in a Culinary Adventure Explore Our Exquisite Selections
+          You Can Choose The Menus
         </div>
       </div>
 
-      {/* Product Coffee Drinks */}
+      {/* This is transaction for customer */}
+      <TransactionCustomerPage />
 
+      {/* Product Coffee Drinks */}
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
@@ -227,19 +229,7 @@ export function ProductCustomerLayout() {
           </div>
         </section>
       </div>
-      <div
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        className="flex justify-center p-8 bg-white border"
-      >
-        <img
-          src="/assets/images/login/melina_coffee_logo1_removebg.png"
-          className="h-8 mr-2"
-        />
-        <span className="text-[#A75D5D] font-semibold text-xl">
-          Melina Coffee
-        </span>
-      </div>
+
       {/* <EmblaCarousel
         slides={[
           <img

@@ -86,7 +86,7 @@ export const TransactionTableComponent = ({
   const columns = React.useMemo<ColumnDef<PaymentMethodEntity>[]>(
     () => [
       {
-        accessorKey: 'payment_method_id',
+        accessorKey: 'id',
         header: 'ID Transaksi',
       },
       {
@@ -94,8 +94,16 @@ export const TransactionTableComponent = ({
         header: 'Metode Transaksi',
       },
       {
-        accessorKey: 'customer_name',
+        accessorKey: 'total_transactions',
+        header: 'Total Transaksi',
+      },
+      {
+        accessorKey: 'name_customer',
         header: 'Nama Pembeli',
+      },
+      {
+        accessorKey: 'cashier_id',
+        header: 'Id Cashier',
       },
       // {
       //   accessorKey: 'price',
@@ -110,6 +118,10 @@ export const TransactionTableComponent = ({
       {
         accessorKey: 'created_at',
         header: 'Created At',
+        cell: ({ getValue }) => {
+          const date = getValue() as string // assuming `created_at` is a string
+          return <div>{format(new Date(date), 'dd/MM/yyyy')}</div>
+        },
       },
 
       {
@@ -120,11 +132,20 @@ export const TransactionTableComponent = ({
           return (
             <>
               <Group spacing="xs" noWrap>
-                <Link href={`/Courses/detail/${getValue()}`}>
+                <Link
+                  href={`/transaction-managaement/transaction/detail-transaction${getValue()}`}
+                >
                   <Button variant="outline" size="sm" color="blue">
                     Show
                   </Button>
                 </Link>
+                {/* <Link
+                  href={`/transaction-managaement/transaction/detail-transaction${getValue()}`}
+                > */}
+                <Button variant="outline" size="sm" color="red">
+                  Print Data
+                </Button>
+                {/* </Link> */}
 
                 {/* <Link href={`/academic/master-data/course/${getValue()}/edit`}>
                   <Button variant="outline" size="sm" color="yellow">
@@ -132,9 +153,9 @@ export const TransactionTableComponent = ({
                   </Button>
                 </Link> */}
 
-                <Button variant="outline" size="sm" color="red">
+                {/* <Button variant="outline" size="sm" color="red">
                   Delete
-                </Button>
+                </Button> */}
                 {/* <Grid.Col span={5} offset={1}>
                   <Flex justify={'flex-end'}>
                     <SearchingField size="sm" />

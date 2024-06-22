@@ -1,4 +1,7 @@
-import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
+import {
+  CreateTransactionDto,
+  PaymentMethodEntity,
+} from '@/features/transaction-management/payment/payment.model'
 import { apiClient } from '@core/api/base.api'
 import { BasePaginatedResponse, BaseResponse } from '@core/api/base.response'
 import { Builder } from 'builder-pattern'
@@ -35,7 +38,7 @@ const mockData: PaymentMethodEntity = {
 }
 
 // this function doesn't work because the backend doesn't yet create the payment method
-export function createPayment(props: PaymentMethodEntity) {
+export function createPayment(props: CreateTransactionDto) {
   return apiClient.post('transactions/create', props, {
     accessToken: 'token',
   })
@@ -48,6 +51,13 @@ export function updatePayment(props: PaymentMethodEntity) {
 export async function getPaymentById(query: string) {
   const result = await apiClient.get<BaseResponse<PaymentMethodEntity>>(
     `/transactions/find${query}`
+  )
+  return result.data.data
+}
+
+export async function getPaymentDetailById(query: string) {
+  const result = await apiClient.get<BaseResponse<PaymentMethodEntity>>(
+    `/transactions/find/details${query}`
   )
   return result.data.data
 }

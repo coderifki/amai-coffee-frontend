@@ -1,32 +1,17 @@
-import AdminLayout from '@/core/AdminLayout'
 import PaymentCard, { ICartItem } from '@/core/components/cards/PaymentCard'
 import ProductCard from '@/core/components/cards/ProductCard'
+import TransactionCustomerLayout from '@/core/components/customers/TransactionCustomerLayout'
 import CategorySelector from '@/core/components/selector/CatProductSelector'
 import { getAllProductPagination } from '@/features/product-management/product/prodcut.api'
 import { createPayment } from '@/features/transaction-management/payment/payment.api'
 import { PaymentMethodEntity } from '@/features/transaction-management/payment/payment.model'
-import { breadCrumbs } from '@/types/common'
 import { Grid, Text } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
-const breadCrumbs: breadCrumbs[] = [
-  { title: 'Dashboard', value: 'dashboard', href: '/dashboard' },
-  {
-    title: 'Tabel Transaksi',
-    value: 'table_transaction',
-    href: '/transaction-management/transaction',
-  },
-  {
-    title: `Tambah Produk`,
-    value: `add`,
-    href: '#',
-  },
-]
-
-export default function AddTransactionPage() {
+export default function TransactionCustomerPage() {
   const [chart, setChart] = useState<ICartItem[]>([])
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(5)
@@ -132,7 +117,7 @@ export default function AddTransactionPage() {
   }
 
   return (
-    <AdminLayout>
+    <TransactionCustomerLayout>
       {/* Tampilkan CategorySelector */}
       <Text pb="8px" fz="md">
         Select Category Product
@@ -188,6 +173,6 @@ export default function AddTransactionPage() {
           </Grid.Col>
         </Grid>
       )}
-    </AdminLayout>
+    </TransactionCustomerLayout>
   )
 }
