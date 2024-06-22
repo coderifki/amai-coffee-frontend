@@ -43,6 +43,8 @@
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
     "framer-motion": "^10.16.4",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "moment": "^2.29.4",
     "next": "13.3.0",
     "or": "^0.2.0",
